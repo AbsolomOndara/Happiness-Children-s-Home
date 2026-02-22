@@ -719,11 +719,369 @@
             <div class="prog-card"><i class="fas fa-heartbeat"></i><h4>Medical</h4></div>
         </div>
 
-        <div style="margin: 2rem 0 1rem;"><h2>Meet the children</h2></div>
-        <div class="children-grid">
-            <div class="child-card"><div class="child-avatar"><i class="fas fa-smile"></i></div><div class="child-info"><h4>Akinyi, 9</h4></div></div>
-            <div class="child-card"><div class="child-avatar"><i class="fas fa-futbol"></i></div><div class="child-info"><h4>Brian, 13</h4></div></div>
-        </div>
+       <!-- ========== MEET THE CHILDREN CAROUSEL SECTION ========== -->
+<!-- Include this HTML where you want the carousel to appear.   -->
+<!-- Make sure the images (child1.png, child2.png, ...) exist   -->
+<!-- in the "images" folder, or adjust the paths accordingly.   -->
+
+<style>
+  /* ---------- carousel container ---------- */
+  .children-carousel-section {
+    margin: 3rem 0;
+    position: relative;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .children-carousel-section h2 {
+    color: #0B3D91;
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+    padding: 0 1rem;
+  }
+
+  .carousel-container {
+    position: relative;
+    max-width: 1280px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 40px;
+  }
+
+  .carousel-track-wrapper {
+    overflow: hidden;
+    border-radius: 40px;
+  }
+
+  .carousel-track {
+    display: flex;
+    transition: transform 0.4s ease-in-out;
+    gap: 0; /* no gap – images will be side by side */
+  }
+
+  /* ---------- child card ---------- */
+  .child-card-carousel {
+    flex: 0 0 calc(33.333% - 0px); /* three items per row on desktop */
+    min-width: 0;
+    padding: 0 10px; /* small spacing between cards */
+    box-sizing: border-box;
+  }
+
+  .child-card-inner {
+    background: white;
+    border-radius: 40px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+    border: 1px solid #edf2f9;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .child-card-inner:hover {
+    transform: scale(1.02);
+    box-shadow: 0 20px 30px -8px rgba(11, 61, 145, 0.2);
+    border-color: #F4C430;
+  }
+
+  .child-image {
+    width: 100%;
+    aspect-ratio: 1 / 1; /* square image */
+    overflow: hidden;
+    background: #c2d9ff; /* fallback */
+  }
+
+  .child-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .child-card-inner:hover .child-image img {
+    transform: scale(1.05);
+  }
+
+  .child-info-carousel {
+    padding: 1.5rem;
+    text-align: center;
+  }
+
+  .child-info-carousel h4 {
+    font-size: 1.5rem;
+    color: #0B3D91;
+    margin-bottom: 0.3rem;
+    font-weight: 600;
+  }
+
+  .child-info-carousel p {
+    color: #4a5f79;
+    font-size: 1rem;
+  }
+
+  /* ---------- navigation arrows ---------- */
+  .carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    background: #F4C430;
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    color: #0B3D91;
+    transition: all 0.2s;
+    z-index: 10;
+  }
+
+  .carousel-arrow:hover {
+    background: #e6b220;
+    transform: translateY(-50%) scale(1.05);
+  }
+
+  .carousel-arrow.left {
+    left: -20px;
+  }
+
+  .carousel-arrow.right {
+    right: -20px;
+  }
+
+  /* ---------- dots indicators ---------- */
+  .carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 2rem;
+  }
+
+  .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #d0ddeb;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .dot.active {
+    background: #F4C430;
+    transform: scale(1.3);
+  }
+
+  /* ---------- responsive design ---------- */
+  @media screen and (max-width: 1000px) {
+    .child-card-carousel {
+      flex: 0 0 calc(50% - 0px); /* two items per row on tablet */
+    }
+    .carousel-arrow.left {
+      left: -10px;
+    }
+    .carousel-arrow.right {
+      right: -10px;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .child-card-carousel {
+      flex: 0 0 calc(100% - 0px); /* one item per row on mobile */
+    }
+    .carousel-arrow {
+      width: 40px;
+      height: 40px;
+      font-size: 1.5rem;
+    }
+    .carousel-arrow.left {
+      left: 5px;
+    }
+    .carousel-arrow.right {
+      right: 5px;
+    }
+    .children-carousel-section h2 {
+      font-size: 1.8rem;
+      text-align: center;
+    }
+  }
+
+  /* fallback if images missing */
+  .child-image img[src*="child"] {
+    background: #c2d9ff;
+  }
+</style>
+
+<section class="children-carousel-section">
+  <h2><i class="fas fa-child" style="color: #F4C430;"></i> Meet the children</h2>
+
+  <div class="carousel-container">
+    <div class="carousel-track-wrapper">
+      <div class="carousel-track" id="childTrack">
+        <!-- child cards will be injected here via JavaScript -->
+      </div>
+    </div>
+
+    <!-- navigation arrows -->
+    <button class="carousel-arrow left" id="prevChildBtn"><i class="fas fa-chevron-left"></i></button>
+    <button class="carousel-arrow right" id="nextChildBtn"><i class="fas fa-chevron-right"></i></button>
+  </div>
+
+  <!-- dots indicators -->
+  <div class="carousel-dots" id="childDots"></div>
+</section>
+
+<script>
+  (function() {
+    // ---------- CHILDREN DATA ----------
+    // Replace with your actual children data. Images should be in "images/" folder.
+    const children = [
+      { name: 'Akinyi', age: 9, image: 'images/child1.png', dream: 'Dreams to be a teacher' },
+      { name: 'Brian', age: 13, image: 'images/child2.png', dream: 'Football talent' },
+      { name: 'Faith', age: 6, image: 'images/child3.png', dream: 'Little artist' },
+      { name: 'James', age: 10, image: 'images/child4.png', dream: 'Loves science' },
+      { name: 'Mary', age: 8, image: 'images/child5.png', dream: 'Wants to be a nurse' },
+      { name: 'Samuel', age: 12, image: 'images/child6.png', dream: 'Enjoys reading' }
+      // add more as needed
+    ];
+
+    // Carousel configuration
+    const track = document.getElementById('childTrack');
+    const dotsContainer = document.getElementById('childDots');
+    const prevBtn = document.getElementById('prevChildBtn');
+    const nextBtn = document.getElementById('nextChildBtn');
+
+    let currentIndex = 0;
+    let visibleCount = 3; // default, will update on resize
+
+    // Function to determine visible cards based on screen width
+    function getVisibleCount() {
+      if (window.innerWidth <= 600) return 1;
+      if (window.innerWidth <= 1000) return 2;
+      return 3;
+    }
+
+    // Render all cards
+    function renderCards() {
+      track.innerHTML = '';
+      children.forEach((child, index) => {
+        const card = document.createElement('div');
+        card.className = 'child-card-carousel';
+        card.innerHTML = `
+          <div class="child-card-inner">
+            <div class="child-image">
+              <img src="${child.image}" alt="${child.name}" 
+                onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22400%22%20height%3D%22400%22%20viewBox%3D%220%200%20400%20400%22%3E%3Crect%20width%3D%22400%22%20height%3D%22400%22%20fill%3D%22%23c2d9ff%22%2F%3E%3Ctext%20x%3D%2250%22%20y%3D%22200%22%20font-family%3D%22Arial%22%20font-size%3D%2224%22%20fill%3D%22%230B3D91%22%3E${child.name}%3C%2Ftext%3E%3C%2Fsvg%3E';">
+            </div>
+            <div class="child-info-carousel">
+              <h4>${child.name}, ${child.age}</h4>
+              <p>${child.dream}</p>
+            </div>
+          </div>
+        `;
+        track.appendChild(card);
+      });
+    }
+
+    // Update dots
+    function updateDots() {
+      const totalSlides = Math.ceil(children.length / visibleCount);
+      dotsContainer.innerHTML = '';
+      for (let i = 0; i < totalSlides; i++) {
+        const dot = document.createElement('button');
+        dot.className = 'dot' + (i === currentIndex ? ' active' : '');
+        dot.setAttribute('data-index', i);
+        dot.addEventListener('click', () => {
+          currentIndex = i;
+          slideToCurrent();
+          updateDots();
+        });
+        dotsContainer.appendChild(dot);
+      }
+    }
+
+    // Slide to current index based on visible count
+    function slideToCurrent() {
+      const maxIndex = Math.ceil(children.length / visibleCount) - 1;
+      if (currentIndex < 0) currentIndex = 0;
+      if (currentIndex > maxIndex) currentIndex = maxIndex;
+
+      const slideWidth = track.children[0]?.offsetWidth || 0;
+      const shift = currentIndex * visibleCount * slideWidth;
+      track.style.transform = `translateX(-${shift}px)`;
+
+      // update active dot
+      Array.from(dotsContainer.children).forEach((dot, i) => {
+        dot.classList.toggle('active', i === currentIndex);
+      });
+    }
+
+    // Recalculate on resize
+    function onResize() {
+      const newVisible = getVisibleCount();
+      if (newVisible !== visibleCount) {
+        visibleCount = newVisible;
+        currentIndex = 0; // reset to first slide
+        updateDots();
+        slideToCurrent();
+      } else {
+        // still need to adjust position because width changed
+        slideToCurrent();
+      }
+    }
+
+    // Event listeners
+    prevBtn.addEventListener('click', () => {
+      if (currentIndex > 0) {
+        currentIndex--;
+        slideToCurrent();
+        updateDots();
+      }
+    });
+
+    nextBtn.addEventListener('click', () => {
+      const maxIndex = Math.ceil(children.length / visibleCount) - 1;
+      if (currentIndex < maxIndex) {
+        currentIndex++;
+        slideToCurrent();
+        updateDots();
+      }
+    });
+
+    // Touch support (simple swipe)
+    let touchStartX = 0;
+    track.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    track.addEventListener('touchend', (e) => {
+      const touchEndX = e.changedTouches[0].screenX;
+      const diff = touchStartX - touchEndX;
+      if (Math.abs(diff) > 50) { // swipe threshold
+        if (diff > 0) {
+          // swipe left -> next
+          nextBtn.click();
+        } else {
+          // swipe right -> previous
+          prevBtn.click();
+        }
+      }
+    });
+
+    // Initialize
+    renderCards();
+    visibleCount = getVisibleCount();
+    updateDots();
+    slideToCurrent();
+
+    // Listen to resize
+    window.addEventListener('resize', onResize);
+  })();
+</script>
+<!-- ========== END CAROUSEL SECTION ========== -->
 
         <div class="flagship-section">
             <div class="flagship-header">Our Home in Nyamiobo</div>
