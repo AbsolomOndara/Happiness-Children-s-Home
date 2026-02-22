@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&display=swap" rel="stylesheet">
     <style>
-        /* === styles.css === */
+        /* === styles.css - fully responsive with logo image and mobile nav buttons === */
         * {
             margin: 0;
             padding: 0;
@@ -23,7 +23,7 @@
             background-color: #ffffff;
             color: #152b42;
             line-height: 1.5;
-            padding: 20px 20px 0; /* top, left, right spacing */
+            padding: 15px 15px 0;
         }
 
         :root {
@@ -37,46 +37,36 @@
             --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
         }
 
-        /* floating navigation - spaced from top and sides */
+        /* floating navigation */
         .floating-nav {
             position: sticky;
-            top: 20px;
+            top: 15px;
             z-index: 1000;
             background-color: var(--dark-blue);
             box-shadow: 0 4px 16px rgba(0, 20, 40, 0.25);
             width: 100%;
             max-width: 1280px;
             margin: 0 auto 20px;
-            border-radius: 80px;
+            border-radius: 60px;
         }
 
         .nav-container {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0.6rem 2rem;
+            padding: 0.6rem 1.5rem;
         }
 
-        .logo a {
-            font-weight: 700;
-            font-size: 1.6rem;
-            color: var(--white);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-            letter-spacing: -0.02em;
-        }
-
-        .logo i {
-            color: var(--soft-gold);
-            font-size: 2rem;
+        .logo img {
+            height: 45px; /* adjust based on your logo */
+            width: auto;
+            display: block;
         }
 
         .nav-menu {
             display: flex;
             align-items: center;
-            gap: 2rem;
+            gap: 1.8rem;
             list-style: none;
         }
 
@@ -84,10 +74,11 @@
             color: var(--white);
             text-decoration: none;
             font-weight: 500;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             transition: 0.2s;
             padding-bottom: 0.25rem;
             border-bottom: 2px solid transparent;
+            white-space: nowrap;
         }
 
         .nav-menu li a:hover {
@@ -98,7 +89,7 @@
         .donate-btn-nav {
             background-color: var(--soft-gold);
             color: var(--dark-blue) !important;
-            padding: 0.6rem 1.8rem !important;
+            padding: 0.5rem 1.5rem !important;
             border-radius: 40px;
             font-weight: 600;
             border-bottom: none !important;
@@ -110,7 +101,6 @@
             color: #0a2e6e !important;
         }
 
-        /* hamburger button */
         .hamburger {
             display: none;
             font-size: 2rem;
@@ -120,54 +110,102 @@
             cursor: pointer;
         }
 
-        /* mobile menu that shows hom.png */
-        .mobile-menu-image {
-            display: none; /* hidden by default */
+        /* mobile menu - now contains image + navigation buttons */
+        .mobile-menu {
+            display: none;
             position: fixed;
-            top: 100px;
-            left: 20px;
-            right: 20px;
+            top: 85px;
+            left: 15px;
+            right: 15px;
             background: var(--light-bg);
-            border-radius: 40px;
+            border-radius: 30px;
             padding: 1.5rem;
             box-shadow: var(--shadow);
             z-index: 999;
-            text-align: center;
             border: 2px solid var(--soft-gold);
+            max-height: 80vh;
+            overflow-y: auto;
         }
 
-        .mobile-menu-image img {
+        .mobile-menu:not(.hide) {
+            display: block;
+        }
+
+        .mobile-menu img {
             max-width: 100%;
             height: auto;
-            border-radius: 30px;
+            border-radius: 20px;
             display: block;
-            margin: 0 auto;
+            margin: 0 auto 1.5rem;
             border: 3px solid white;
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
 
-        .mobile-menu-image:not(.hide) {
-            display: block;
+        .mobile-nav-links {
+            list-style: none;
+            padding: 0;
         }
 
-        /* main container */
+        .mobile-nav-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .mobile-nav-links li a {
+            display: block;
+            padding: 0.8rem 1rem;
+            background: white;
+            color: var(--dark-blue);
+            text-decoration: none;
+            font-weight: 500;
+            border-radius: 40px;
+            text-align: center;
+            border: 1px solid #e0e7f0;
+            transition: 0.2s;
+        }
+
+        .mobile-nav-links li a:hover {
+            background: var(--soft-gold);
+            color: var(--dark-blue);
+            border-color: var(--soft-gold);
+        }
+
+        .mobile-nav-links .donate-btn-mobile {
+            background: var(--soft-gold);
+            color: var(--dark-blue);
+            font-weight: 700;
+            border: none;
+        }
+
+        .mobile-nav-links .donate-btn-mobile:hover {
+            background: #e6b220;
+        }
+
+        .mobile-contact {
+            margin-top: 1.5rem;
+            text-align: center;
+            color: var(--dark-blue);
+            font-weight: 500;
+        }
+
+        /* main content */
         main {
             max-width: 1280px;
             margin: 0 auto;
             padding: 0;
         }
 
-        /* hero section with actual image */
+        /* hero section */
         .hero {
             display: flex;
             align-items: center;
-            gap: 3rem;
-            padding: 3.5rem 0 4rem;
+            gap: 2rem;
+            padding: 2rem 0 3rem;
             flex-wrap: wrap;
         }
 
         .hero-content {
             flex: 1 1 45%;
+            min-width: 280px;
         }
 
         .hero-content .badge {
@@ -175,15 +213,16 @@
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             margin-bottom: 1rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            flex-wrap: wrap;
         }
 
         .hero-content h1 {
-            font-size: 3.2rem;
+            font-size: clamp(2.2rem, 6vw, 3.2rem);
             font-weight: 800;
             line-height: 1.2;
             color: var(--dark-blue);
@@ -197,7 +236,7 @@
         }
 
         .hero-desc {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: #2b405c;
             margin-bottom: 2rem;
             max-width: 550px;
@@ -211,11 +250,12 @@
 
         .btn {
             display: inline-block;
-            padding: 0.9rem 2.4rem;
+            padding: 0.8rem 2rem;
             border-radius: 60px;
             font-weight: 600;
             text-decoration: none;
             transition: 0.2s;
+            text-align: center;
         }
 
         .btn-primary {
@@ -231,7 +271,8 @@
 
         .hero-image {
             flex: 1 1 45%;
-            min-height: 420px;
+            min-width: 280px;
+            min-height: 300px;
             position: relative;
             box-shadow: var(--shadow);
             border-radius: 40px 40px 40px 0;
@@ -248,14 +289,14 @@
         .hero-image::after {
             content: "📍 Gucha Subcounty, Nyamiobo";
             position: absolute;
-            bottom: 20px;
-            left: 25px;
+            bottom: 15px;
+            left: 15px;
             background: var(--dark-blue);
             color: white;
-            padding: 0.6rem 1.5rem;
+            padding: 0.5rem 1.2rem;
             border-radius: 60px;
             font-weight: 500;
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             z-index: 2;
         }
 
@@ -265,20 +306,21 @@
             flex-wrap: wrap;
             justify-content: space-between;
             background: white;
-            border-radius: 60px;
-            padding: 2rem 2.5rem;
+            border-radius: 50px;
+            padding: 1.5rem 2rem;
             box-shadow: var(--card-shadow);
-            margin: 2rem 0 4rem;
+            margin: 2rem 0 3rem;
             border: 1px solid #edf2f9;
         }
 
         .stat-item {
             text-align: center;
-            flex: 1 1 130px;
+            flex: 1 1 120px;
+            margin: 0.5rem 0;
         }
 
         .stat-item h3 {
-            font-size: 2.6rem;
+            font-size: clamp(1.8rem, 5vw, 2.6rem);
             color: var(--dark-blue);
             font-weight: 700;
             line-height: 1.2;
@@ -287,137 +329,162 @@
         /* milestone section */
         .milestone-section {
             background: var(--light-bg);
-            border-radius: 60px;
-            padding: 3rem 2.5rem;
-            margin: 4rem 0;
+            border-radius: 50px;
+            padding: 2.5rem 2rem;
+            margin: 3rem 0;
             box-shadow: var(--card-shadow);
         }
 
         .milestone-section h2 {
             color: var(--dark-blue);
-            font-size: 2.2rem;
+            font-size: clamp(1.8rem, 5vw, 2.2rem);
             font-weight: 700;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             display: flex;
             align-items: center;
             gap: 0.8rem;
+            flex-wrap: wrap;
         }
 
         .milestone-grid {
             display: flex;
             flex-wrap: wrap;
-            gap: 2rem;
+            gap: 1.5rem;
             justify-content: space-between;
         }
 
         .milestone-card {
-            flex: 1 1 200px;
+            flex: 1 1 180px;
             background: white;
-            border-radius: 40px;
-            padding: 2rem 1.5rem;
+            border-radius: 30px;
+            padding: 1.5rem;
             box-shadow: 0 8px 20px rgba(0,0,0,0.02);
             border-left: 6px solid var(--soft-gold);
         }
 
         .milestone-card .year {
-            font-size: 2.5rem;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
             font-weight: 800;
             color: var(--dark-blue);
             line-height: 1;
         }
 
         .milestone-card .desc {
-            margin-top: 1rem;
+            margin-top: 0.8rem;
             color: #2d3e5f;
+            font-size: 0.95rem;
         }
 
         .chat-link {
             margin-top: 2rem;
             text-align: right;
-            font-size: 1.2rem;
         }
 
         .chat-link a {
             background: var(--soft-gold);
             color: var(--dark-blue);
-            padding: 0.8rem 2rem;
+            padding: 0.7rem 1.8rem;
             border-radius: 60px;
             text-decoration: none;
             font-weight: 600;
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
+            font-size: 1rem;
         }
 
-        /* story, programs, children, flagship - shortened */
+        /* story mission */
         .story-mission {
             display: flex;
             flex-wrap: wrap;
-            gap: 3.5rem;
+            gap: 2rem;
             background: var(--light-bg);
-            border-radius: 60px;
-            padding: 3.5rem;
-            margin: 4rem 0;
+            border-radius: 50px;
+            padding: 2.5rem;
+            margin: 3rem 0;
         }
-        .story-col { flex: 1 1 280px; }
-        .story-col h2 { color: var(--dark-blue); font-size: 2.2rem; }
+        .story-col {
+            flex: 1 1 250px;
+        }
+        .story-col h2 {
+            color: var(--dark-blue);
+            font-size: clamp(1.6rem, 4vw, 2rem);
+            margin-bottom: 1rem;
+        }
+
+        /* programs grid */
         .programs-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
         }
         .prog-card {
             background: white;
-            padding: 2.2rem 1.8rem;
-            border-radius: 40px;
+            padding: 1.8rem;
+            border-radius: 30px;
             box-shadow: var(--card-shadow);
+            text-align: center;
         }
-        .prog-card i { font-size: 2.8rem; color: var(--dark-blue); }
+        .prog-card i {
+            font-size: 2.5rem;
+            color: var(--dark-blue);
+            margin-bottom: 1rem;
+        }
+
+        /* children grid */
         .children-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
         }
         .child-card {
             background: white;
-            border-radius: 40px;
+            border-radius: 30px;
             box-shadow: var(--card-shadow);
+            overflow: hidden;
         }
         .child-avatar {
-            height: 200px;
+            height: 180px;
             background: #c2d9ff;
-            border-radius: 40px 40px 0 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 4rem;
+            font-size: 3.5rem;
         }
-        .child-info { padding: 1.5rem; }
+        .child-info {
+            padding: 1.2rem;
+        }
+
+        /* flagship */
         .flagship-section {
             background: var(--dark-blue);
             color: white;
-            border-radius: 60px;
-            padding: 3rem;
-            margin: 4rem 0;
+            border-radius: 50px;
+            padding: 2.5rem;
+            margin: 3rem 0;
         }
-        .flagship-header { color: var(--soft-gold); font-size: 2.2rem; }
+        .flagship-header {
+            color: var(--soft-gold);
+            font-size: clamp(1.6rem, 4vw, 2rem);
+            margin-bottom: 1rem;
+        }
 
         /* floating whatsapp */
         .floating-whatsapp {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
+            bottom: 20px;
+            right: 20px;
             background-color: #25D366;
             color: white;
-            width: 70px;
-            height: 70px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2.5rem;
+            font-size: 2rem;
             box-shadow: 0 10px 20px rgba(0,0,0,0.2);
             z-index: 999;
             text-decoration: none;
@@ -427,48 +494,121 @@
         footer {
             background: var(--dark-blue);
             color: white;
-            margin-top: 5rem;
-            padding: 3rem 2rem;
-            border-radius: 60px 60px 0 0;
+            margin-top: 4rem;
+            padding: 2.5rem 1.5rem 1.5rem;
+            border-radius: 50px 50px 0 0;
         }
         .footer-grid {
             max-width: 1280px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 2rem;
         }
-        .footer-col a { color: #deeaff; text-decoration: none; }
-        .social-icons a { font-size: 2rem; margin-right: 1rem; color: white; }
-        .copyright { text-align: center; padding-top: 2rem; color: #a0b9e0; }
+        .footer-col a {
+            color: #deeaff;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+        .social-icons a {
+            font-size: 1.8rem;
+            margin-right: 1rem;
+            color: white;
+        }
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            color: #a0b9e0;
+            font-size: 0.9rem;
+        }
 
-        /* mobile adjustments */
+        /* mobile breakpoints */
         @media screen and (max-width: 900px) {
             .nav-menu {
-                display: none;
+                display: none; /* hide desktop menu */
             }
+
             .hamburger {
                 display: block;
             }
-            .hero-content h1 {
-                font-size: 2.6rem;
+
+            body {
+                padding: 10px 10px 0;
             }
+
+            .floating-nav {
+                top: 10px;
+                border-radius: 40px;
+            }
+
+            .logo img {
+                height: 40px;
+            }
+
+            .hero {
+                padding: 1.5rem 0 2rem;
+            }
+
+            .hero-buttons .btn {
+                width: 100%;
+            }
+
             .impact-stats {
                 flex-direction: column;
-                gap: 2rem;
+                gap: 1rem;
             }
+
             .milestone-grid {
                 flex-direction: column;
+            }
+
+            .chat-link {
+                text-align: center;
+            }
+
+            .chat-link a {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .programs-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* small phones */
+        @media screen and (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-image {
+                min-height: 250px;
+            }
+
+            .hero-image::after {
+                font-size: 0.75rem;
+                padding: 0.4rem 1rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .social-icons {
+                justify-content: center;
+                display: flex;
             }
         }
     </style>
 </head>
 <body>
-    <!-- floating navigation -->
+    <!-- floating navigation with logo image -->
     <nav class="floating-nav">
         <div class="nav-container">
             <div class="logo">
-                <a href="#"><i class="fas fa-child"></i> Happiness Home</a>
+                <img src="images/logo.png" alt="Happiness Children's Home Logo" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22120%22%20height%3D%2250%22%20viewBox%3D%220%200%20120%2050%22%3E%3Crect%20width%3D%22120%22%20height%3D%2250%22%20fill%3D%22%230B3D91%22%2F%3E%3Ctext%20x%3D%2210%22%20y%3D%2232%22%20font-family%3D%22Arial%22%20font-size%3D%2218%22%20fill%3D%22%23F4C430%22%3ELogo%3C%2Ftext%3E%3C%2Fsvg%3E';">
             </div>
             <!-- desktop menu -->
             <ul class="nav-menu" id="navMenu">
@@ -488,17 +628,32 @@
         </div>
     </nav>
 
-    <!-- mobile menu image (hom.png) - hidden by default -->
-    <div id="mobileMenuImage" class="mobile-menu-image hide">
-        <img src="images/home.jpg" alt="Mobile menu" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22400%22%20height%3D%22300%22%20viewBox%3D%220%200%20400%20300%22%3E%3Crect%20width%3D%22400%22%20height%3D%22300%22%20fill%3D%22%230B3D91%22%2F%3E%3Ctext%20x%3D%2250%22%20y%3D%22150%22%20font-family%3D%22Arial%22%20font-size%3D%2224%22%20fill%3D%22%23F4C430%22%3EMobile%20Menu%3C%2Ftext%3E%3Ctext%20x%3D%2250%22%20y%3D%22200%22%20font-family%3D%22Arial%22%20font-size%3D%2220%22%20fill%3D%22%23FFFFFF%22%3EPlace%20hom.png%20here%3C%2Ftext%3E%3C%2Fsvg%3E';">
-        <p style="margin-top: 0.8rem; color: var(--dark-blue); font-weight: 500;"><i class="fas fa-phone-alt"></i> 0705 917289</p>
+    <!-- mobile menu (image + navigation buttons) -->
+    <div id="mobileMenu" class="mobile-menu hide">
+        <img src="images/hom.png" alt="Mobile menu" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22400%22%20height%3D%22300%22%20viewBox%3D%220%200%20400%20300%22%3E%3Crect%20width%3D%22400%22%20height%3D%22300%22%20fill%3D%22%230B3D91%22%2F%3E%3Ctext%20x%3D%2250%22%20y%3D%22150%22%20font-family%3D%22Arial%22%20font-size%3D%2224%22%20fill%3D%22%23F4C430%22%3EMobile%20Menu%3C%2Ftext%3E%3Ctext%20x%3D%2250%22%20y%3D%22200%22%20font-family%3D%22Arial%22%20font-size%3D%2220%22%20fill%3D%22%23FFFFFF%22%3EPlace%20hom.png%20here%3C%2Ftext%3E%3C%2Fsvg%3E';">
+        
+        <ul class="mobile-nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Programs</a></li>
+            <li><a href="#">Sponsor</a></li>
+            <li><a href="#">Donate</a></li>
+            <li><a href="#">Volunteer</a></li>
+            <li><a href="#">Gallery</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#" class="donate-btn-mobile"><i class="fas fa-heart"></i> Donate Now</a></li>
+        </ul>
+        <div class="mobile-contact">
+            <i class="fas fa-phone-alt"></i> 0705 917289 | 0700 769001
+        </div>
     </div>
 
     <!-- floating whatsapp -->
     <a href="https://wa.me/254705917289" class="floating-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
     <main>
-        <!-- hero section with actual image from images/home.png -->
+        <!-- hero section with image -->
         <section class="hero">
             <div class="hero-content">
                 <div class="badge"><i class="fas fa-hand-holding-heart" style="color:var(--soft-gold);"></i> YOUR PARTNER IN GIVING HOPE</div>
@@ -511,7 +666,7 @@
                 <p style="margin-top: 2rem;"><i class="fas fa-phone-alt" style="color:var(--dark-blue);"></i> 0705 917289 / 0700 769001</p>
             </div>
             <div class="hero-image">
-               <img src="images/home.png" alt="Happiness Children's Home" onerror="this.onerror=null; this.src='images/home.jpg'">
+                <img src="images/home.png" alt="Happiness Children's Home" onerror="this.onerror=null; this.src='images/home.jpg'">
             </div>
         </section>
 
@@ -523,7 +678,7 @@
             <div class="stat-item"><h3>150+</h3><p>Supporters</p></div>
         </div>
 
-        <!-- MILESTONE SECTION -->
+        <!-- milestone section -->
         <div class="milestone-section">
             <h2><i class="fas fa-trophy" style="color:var(--soft-gold);"></i> Key Milestone</h2>
             <div class="milestone-grid">
@@ -545,7 +700,7 @@
             </div>
         </div>
 
-        <!-- story, programs, children, flagship (condensed) -->
+        <!-- story mission -->
         <div class="story-mission">
             <div class="story-col">
                 <h2>Pioneers of Family-Based Care</h2>
@@ -564,7 +719,7 @@
             <div class="prog-card"><i class="fas fa-heartbeat"></i><h4>Medical</h4></div>
         </div>
 
-        <div class="section-header"><h2>Meet the children</h2></div>
+        <div style="margin: 2rem 0 1rem;"><h2>Meet the children</h2></div>
         <div class="children-grid">
             <div class="child-card"><div class="child-avatar"><i class="fas fa-smile"></i></div><div class="child-info"><h4>Akinyi, 9</h4></div></div>
             <div class="child-card"><div class="child-avatar"><i class="fas fa-futbol"></i></div><div class="child-info"><h4>Brian, 13</h4></div></div>
@@ -581,7 +736,7 @@
             <div class="footer-col"><h4 style="color:var(--soft-gold);">Happiness Home</h4><p>Nyamiobo, Kisii</p></div>
             <div class="footer-col"><h4>Quick links</h4><p><a href="#">About</a></p></div>
             <div class="footer-col"><h4>Contact</h4><p><i class="fas fa-phone"></i> 0705 917289</p></div>
-            <div class="footer-col"><h4>Follow</h4><div class="social-icons"><a href="#"><i class="fab fa-facebook"></i></a></div></div>
+            <div class="footer-col"><h4>Follow</h4><div class="social-icons"><a href="#"><i class="fab fa-facebook"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-instagram"></i></a></div></div>
         </div>
         <div class="copyright">© 2025 Happiness Children's Home</div>
     </footer>
@@ -589,9 +744,9 @@
     <script>
         (function() {
             const hamburger = document.getElementById('hamburgerBtn');
-            const mobileMenu = document.getElementById('mobileMenuImage');
+            const mobileMenu = document.getElementById('mobileMenu');
 
-            // Ensure menu starts hidden
+            // ensure hidden initially
             mobileMenu.classList.add('hide');
 
             hamburger.addEventListener('click', function(event) {
@@ -617,9 +772,19 @@
                 }
             });
 
-            // Prevent closing when clicking inside the menu
+            // prevent closing when clicking inside menu
             mobileMenu.addEventListener('click', function(event) {
                 event.stopPropagation();
+            });
+
+            // handle window resize to reset menu if needed
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 900) {
+                    mobileMenu.classList.add('hide');
+                    const icon = hamburger.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
             });
         })();
     </script>
