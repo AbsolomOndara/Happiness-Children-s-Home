@@ -1,0 +1,301 @@
+bsite
+
+Become a Volunteer
+2️⃣ About Us Page
+Sections:
+
+Our Story (Founders: Philes Kerubo & Esther Kwamboka)
+
+Vision & Mission
+
+Core Values
+
+Our History Timeline
+
+Meet the Founders
+
+Organizational Structure
+
+Legal & Registration Details
+
+Why Choose Us?
+
+3️⃣ Our Programs Page
+
+Purpose: Show what the children receive.
+
+Subsections:
+
+Education Support
+
+Health & Medical Care
+
+Nutrition Program
+
+Counseling & Emotional Support
+
+Talent & Skills Development
+
+Community Outreach
+
+Each program should have:
+
+Image
+
+Description
+
+Impact statistics
+
+CTA Button
+
+4️⃣ Children / Sponsorship Page
+
+Purpose: Encourage sponsorship.
+
+Sections:
+
+Meet Our Children (Profile Cards)
+
+Sponsorship Options (Monthly / Annual)
+
+How Sponsorship Works
+
+Success Stories
+
+FAQ Section
+
+Optional:
+
+Secure Sponsor Form
+
+5️⃣ Donate Page
+
+This is VERY important.
+
+Sections:
+
+Why Donate?
+
+Donation Options (One-time / Monthly)
+
+Payment Methods (M-Pesa, Bank, Card)
+
+Impact Calculator (Ksh 1,000 feeds X children)
+
+Secure Donation Form
+
+Transparency & Accountability Section
+
+CTA:
+
+Donate Now (Gold Button)
+
+6️⃣ Volunteer Page
+Sections:
+
+Why Volunteer?
+
+Types of Volunteering
+
+Requirements
+
+Application Form
+
+Testimonials from Volunteers
+
+7️⃣ Gallery Page
+Sections:
+
+Photo Gallery (Grid layout)
+
+Video Section
+
+Events Highlights
+
+Before & After Stories
+
+Fully responsive image lightbox feature.
+
+8️⃣ News & Blog Page
+Sections:
+
+Latest News
+
+Upcoming Events
+
+Announcements
+
+Blog Articles
+
+Filter by Category
+
+9️⃣ Contact Us Page
+
+Very important for trust.
+
+Sections:
+
+Contact Form
+
+Phone Numbers:
+
+0705917289
+
+0700769001
+
+Email:
+
+nyandikokwambokaesther@gmail.com
+
+Location:
+
+Kisii County, Gucha Subcounty, Nyamiobo
+
+Google Map Embed
+
+Office Hours
+
+🔟 Transparency & Reports Page
+
+Builds credibility.
+
+Sections:
+
+Annual Reports
+
+Financial Reports
+
+Donor Acknowledgment
+
+Partnerships
+
+1️⃣1️⃣ FAQ Page
+
+Answer common questions:
+
+How can I donate?
+
+How do I sponsor?
+
+Can I visit?
+
+Are you registered?
+
+🔷 GLOBAL COMPONENTS (ON ALL PAGES)
+🔹 Floating Navigation Bar (Sticky)
+
+Structure:
+
+Left:
+
+Logo (Dark Blue & White)
+
+Center:
+
+Home
+
+About
+
+Programs
+
+Sponsorship
+
+Donate
+
+Volunteer
+
+Gallery
+
+Blog
+
+Contact
+
+Right:
+
+Donate Now (Gold Button)
+
+Mobile:
+
+Hamburger Menu
+
+Slide-in full screen menu
+
+🔹 Footer (All Pages)
+
+Include:
+
+Quick Links
+
+Contact Info
+
+Social Media Icons
+
+Newsletter Subscription
+
+Copyright
+
+Location
+
+🧱 ADVANCED FEATURES (Since You Want Complex & Detailed)
+
+Secure donation integration
+
+Admin dashboard (to manage children, blog, donations)
+
+Testimonial carousel
+
+Search bar
+
+Live chat (optional)
+
+SEO optimization
+
+Accessibility compliance
+
+WhatsApp floating button
+
+Language switch (optional)
+
+📱 MOBILE RESPONSIVENESS STRUCTURE
+
+Breakpoints:
+
+Desktop
+
+Tablet
+
+Large Phone
+
+Small Phone
+
+Features:
+
+Collapsible sections
+
+Touch-friendly buttons
+
+Optimized images
+
+Fast loading
+
+📌 PAGE DEVELOPMENT ORDER (Recommended)
+
+Navigation + Footer (Global Layout First)
+
+Home Page
+
+About Page
+
+Programs Page
+
+Donation Page
+
+Sponsorship Page
+
+Contact Page
+
+Gallery
+
+Blog
+
+Admin System
