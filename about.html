@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>About Us - Happiness Children's Home</title>
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #152b42;
+            line-height: 1.5;
+            padding: 0 15px;
+        }
+
+        :root {
+            --dark-blue: #0B3D91;
+            --white: #FFFFFF;
+            --soft-gold: #F4C430;
+            --light-sky: #4DA6FF;
+            --light-bg: #F5F7FA;
+            --shadow: 0 20px 35px -8px rgba(0, 30, 60, 0.15);
+            --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+        }
+
+        /* floating navigation */
+        .floating-nav {
+            position: sticky;
+            top: 15px;
+            z-index: 1000;
+            background-color: var(--dark-blue);
+            box-shadow: 0 4px 16px rgba(0, 20, 40, 0.25);
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto 20px;
+            border-radius: 60px;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.6rem 1.5rem;
+        }
+
+        .logo a {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--white);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .logo i {
+            color: var(--soft-gold);
+            font-size: 2rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 1.8rem;
+            list-style: none;
+        }
+
+        .nav-menu li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: 0.2s;
+            padding-bottom: 0.25rem;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav-menu li a:hover,
+        .nav-menu li a.active {
+            border-bottom-color: var(--soft-gold);
+            color: var(--soft-gold);
+        }
+
+        .donate-btn-nav {
+            background-color: var(--soft-gold);
+            color: var(--dark-blue) !important;
+            padding: 0.5rem 1.8rem !important;
+            border-radius: 40px;
+            font-weight: 600;
+            border-bottom: none !important;
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 2rem;
+            color: white;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* mobile menu */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 85px;
+            left: 15px;
+            right: 15px;
+            background: var(--light-bg);
+            border-radius: 30px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            z-index: 999;
+            border: 2px solid var(--soft-gold);
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .mobile-menu:not(.hide) {
+            display: block;
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+        }
+
+        .mobile-nav-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .mobile-nav-links li a {
+            display: block;
+            padding: 0.8rem 1rem;
+            background: white;
+            color: var(--dark-blue);
+            text-decoration: none;
+            font-weight: 500;
+            border-radius: 40px;
+            text-align: center;
+            border: 1px solid #e0e7f0;
+        }
+
+        .mobile-nav-links .donate-btn-mobile {
+            background: var(--soft-gold);
+            font-weight: 700;
+            border: none;
+        }
+
+        /* page header */
+        .page-header {
+            text-align: center;
+            margin: 3rem 0 2rem;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            color: var(--dark-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .page-header p {
+            color: #2d3e5f;
+            font-size: 1.2rem;
+        }
+
+        /* section titles */
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--dark-blue);
+            margin: 4rem 0 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .section-title i {
+            color: var(--soft-gold);
+            font-size: 2.5rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.8rem;
+            color: var(--dark-blue);
+            margin: 2.5rem 0 1.5rem;
+        }
+
+        /* our story */
+        .story-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+            background: var(--light-bg);
+            border-radius: 60px;
+            padding: 3rem;
+            margin: 2rem 0;
+        }
+
+        .story-content {
+            flex: 2 1 400px;
+        }
+
+        .story-content h2 {
+            font-size: 2rem;
+            color: var(--dark-blue);
+            margin-bottom: 1rem;
+        }
+
+        .founder-quote {
+            background: white;
+            padding: 2rem;
+            border-radius: 40px;
+            margin-top: 2rem;
+            box-shadow: var(--card-shadow);
+            border-left: 6px solid var(--soft-gold);
+        }
+
+        .founder-quote i {
+            color: var(--soft-gold);
+            font-size: 2rem;
+            margin-right: 1rem;
+        }
+
+        .story-stats {
+            flex: 1 1 250px;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .stat-bubble {
+            background: white;
+            border-radius: 40px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+        }
+
+        .stat-bubble h3 {
+            font-size: 2.5rem;
+            color: var(--dark-blue);
+        }
+
+        /* mission vision cards */
+        .mv-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .mv-card {
+            background: var(--light-bg);
+            padding: 2.5rem;
+            border-radius: 40px;
+            box-shadow: var(--card-shadow);
+            border-bottom: 4px solid var(--soft-gold);
+        }
+
+        .mv-card h3 {
+            font-size: 1.8rem;
+            color: var(--dark-blue);
+            margin-bottom: 1rem;
+        }
+
+        /* core values grid */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .value-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 40px;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s;
+        }
+
+        .value-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .value-item i {
+            font-size: 3rem;
+            color: var(--dark-blue);
+            margin-bottom: 1rem;
+        }
+
+        .value-item h4 {
+            font-size: 1.4rem;
+            color: var(--dark-blue);
+        }
+
+        /* timeline */
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 3rem auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background: var(--soft-gold);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+
+        .timeline-content {
+            padding: 20px;
+            background: white;
+            border-radius: 30px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid #edf2f9;
+        }
+
+        .timeline-content .year {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--soft-gold);
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--dark-blue);
+            border: 4px solid var(--soft-gold);
+            border-radius: 50%;
+            top: 20px;
+            right: -14px;
+            z-index: 1;
+        }
+
+        .timeline-item:nth-child(even)::after {
+            left: -14px;
+        }
+
+        /* team grid (founders, matrons, leaders) */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2.5rem;
+            margin: 2rem 0;
+        }
+
+        .team-card {
+            background: white;
+            border-radius: 40px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+        }
+
+        .team-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 30px -8px rgba(11,61,145,0.2);
+        }
+
+        .team-image {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
+        }
+
+        .team-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s;
+        }
+
+        .team-card:hover .team-image img {
+            transform: scale(1.05);
+        }
+
+        .team-info {
+            padding: 1.5rem;
+        }
+
+        .team-info h4 {
+            font-size: 1.4rem;
+            color: var(--dark-blue);
+            margin-bottom: 0.3rem;
+        }
+
+        .team-info .role {
+            color: var(--soft-gold);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-info p {
+            color: #4a5f79;
+        }
+
+        /* organizational structure (simple tree) */
+        .org-chart {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .org-level {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .org-node {
+            background: var(--dark-blue);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 60px;
+            font-weight: 500;
+            box-shadow: var(--card-shadow);
+            min-width: 200px;
+            text-align: center;
+        }
+
+        .org-node.small {
+            background: var(--light-bg);
+            color: var(--dark-blue);
+        }
+
+        .org-connector {
+            font-size: 2rem;
+            color: var(--soft-gold);
+        }
+
+        /* legal badges */
+        .legal-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+
+        .legal-badge {
+            background: white;
+            padding: 2rem;
+            border-radius: 40px;
+            box-shadow: var(--card-shadow);
+            text-align: center;
+            flex: 1 1 200px;
+        }
+
+        .legal-badge i {
+            font-size: 3rem;
+            color: var(--dark-blue);
+            margin-bottom: 1rem;
+        }
+
+        .legal-badge h4 {
+            font-size: 1.2rem;
+            color: var(--dark-blue);
+        }
+
+        /* why choose us */
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .why-card {
+            background: var(--light-bg);
+            padding: 2rem;
+            border-radius: 40px;
+            box-shadow: var(--card-shadow);
+            border-left: 6px solid var(--soft-gold);
+        }
+
+        .why-card i {
+            font-size: 2.5rem;
+            color: var(--dark-blue);
+            margin-bottom: 1rem;
+        }
+
+        /* footer */
+        footer {
+            background: var(--dark-blue);
+            color: white;
+            margin-top: 5rem;
+            padding: 3rem 2rem 1.5rem;
+            border-radius: 60px 60px 0 0;
+        }
+
+        .footer-grid {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .footer-col p, .footer-col a {
+            color: #deeaff;
+            text-decoration: none;
+            line-height: 2;
+        }
+
+        .footer-col i {
+            margin-right: 0.7rem;
+            color: var(--soft-gold);
+        }
+
+        .social-icons a {
+            font-size: 2rem;
+            margin-right: 1rem;
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2.5rem;
+            color: #a0b9e0;
+        }
+
+        /* responsive */
+        @media screen and (max-width: 900px) {
+            .nav-menu {
+                display: none;
+            }
+            .hamburger {
+                display: block;
+            }
+            .floating-nav {
+                top: 10px;
+                border-radius: 40px;
+            }
+            .page-header h1 {
+                font-size: 2.4rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .timeline::after {
+                left: 31px;
+            }
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            .timeline-item::after {
+                left: 18px !important;
+                right: auto;
+            }
+            .story-grid {
+                padding: 1.5rem;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- floating navigation -->
+    <nav class="floating-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="#"><i class="fas fa-child"></i> Happiness Home</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="programs.html">Programs</a></li>
+            <li><a href="sponsor.html">Sponsor</a></li>
+            <li><a href="donate.html">Donate</a></li>
+            <li><a href="volunteer.html">Volunteer</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="donate.html" class="donate-btn-mobile"><i class="fas fa-heart"></i> Donate Now</a></li>
+            </ul>
+            <button class="hamburger" id="hamburgerBtn"><i class="fas fa-bars"></i></button>
+        </div>
+    </nav>
+
+    <!-- mobile menu -->
+    <div id="mobileMenu" class="mobile-menu hide">
+        <ul class="mobile-nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="programs.html">Programs</a></li>
+            <li><a href="sponsor.html">Sponsor</a></li>
+            <li><a href="donate.html">Donate</a></li>
+            <li><a href="volunteer.html">Volunteer</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="donate.html" class="donate-btn-mobile"><i class="fas fa-heart"></i> Donate Now</a></li>
+        </ul>
+    </div>
+
+    <main>
+        <div class="page-header">
+            <h1>About Happiness Children's Home</h1>
+            <p>A family where love and hope transform lives</p>
+        </div>
+
+        <!-- Our Story -->
+        <section>
+            <h2 class="section-title"><i class="fas fa-book-open"></i> Our Story</h2>
+            <div class="story-grid">
+                <div class="story-content">
+                    <h2>Founded with Love in 2013</h2>
+                    <p>Happiness Children's Home began as a small outreach in Nyamiobo, Gucha Subcounty, by two compassionate women, Philes Kerubo and Esther Kwamboka. What started with just 5 children in need has grown into a loving home for 47 children, providing education, healthcare, nutrition, and emotional support.</p>
+                    <p>Today, we are a registered children's home, touching over 200 lives annually and expanding our programs to include skills training and community outreach.</p>
+                    <div class="founder-quote">
+                        <i class="fas fa-quote-left"></i>
+                        <p style="display:inline; font-size:1.2rem;">We believe every child deserves a loving family. That's why we are here – to be that family.</p>
+                        <p style="margin-top:1rem;"><strong>— Philes Kerubo & Esther Kwamboka, Founders</strong></p>
+                    </div>
+                </div>
+                <div class="story-stats">
+                    <div class="stat-bubble">
+                        <h3>2013</h3>
+                        <p>Year founded</p>
+                    </div>
+                    <div class="stat-bubble">
+                        <h3>47</h3>
+                        <p>Children today</p>
+                    </div>
+                    <div class="stat-bubble">
+                        <h3>200+</h3>
+                        <p>Lives touched</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Vision & Mission -->
+        <section>
+            <h2 class="section-title"><i class="fas fa-bullseye"></i> Vision & Mission</h2>
+            <div class="mv-grid">
+                <div class="mv-card">
+                    <h3>Our Mission</h3>
+                    <p>To offer excellent care, education, and community-based support to orphans and vulnerable children in Kisii County, nurturing them into responsible and empowered citizens.</p>
+                </div>
+                <div class="mv-card">
+                    <h3>Our Vision</h3>
+                    <p>To become a beacon of hope and a model of quality childcare in East Africa, where every child thrives in a loving and supportive environment.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Core Values -->
+        <section>
+            <h2 class="section-title"><i class="fas fa-heart"></i> Core Values</h2>
+            <div class="values-grid">
+                <div class="value-item"><i class="fas fa-heart"></i><h4>Love</h4></div>
+                <div class="value-item"><i class="fas fa-hand-holding-heart"></i><h4>Compassion</h4></div>
+                <div class="value-item"><i class="fas fa-graduation-cap"></i><h4>Education</h4></div>
+                <div class="value-item"><i class="fas fa-handshake"></i><h4>Integrity</h4></div>
+                <div class="value-item"><i class="fas fa-people-arrows"></i><h4>Family</h4></div>
+                <div class="value-item"><i class="fas fa-leaf"></i><h4>Growth</h4></div>
+            </div>
+        </section>
+
+        <!-- Our History Timeline -->
+        <section>
+            <h2 class="section-title"><i class="fas fa-timeline"></i> Our History</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="year">2013</span>
+                        <p>Founded by Philes Kerubo and Esther Kwamboka with 5 children in a small rented house in Nyamiobo.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="year">2015</span>
+                        <p>Moved to our own facility, thanks to donor support. Capacity increased to 20 children.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="year">2018</span>
+                        <p>Registered as a children's home by the Department of Social Services.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="year">2021</span>
+                        <p>Launched education sponsorship program; 30 children enrolled in local schools.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="year">2024</span>
+                        <p>Expanded to include a talent development center and a small farm for nutrition.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="year">2025</span>
+                        <p>Celebrating 12 years of service with 47 children under our care.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Meet the Founders -->
+        <section>
+            <h2 class="section-title"><i class="fas fa-user-tie"></i> Meet the Founders</h2>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-image">
+                        <img src="images/ld1.png" alt="Philes Kerubo" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22400%22%20height%3D%22400%22%20viewBox%3D%220%200%20400%20400%22%3E%3Crect%20width%3D%22400%22%20height%3D%22400%22%20fill%3D%22%23c2d9ff%22%2F%3E%3Ctext%20x%3D%2280%22%20y%3D%22200%22%20font-family%3D%22Arial%22%20font-size%3D%2230%22%20fill%3D%22%230B3D91%22%3EPhiles%3C%2Ftext%3E%3C%2Fsvg%3E';">
+                    </div>
+                    <div class="team-info">
+                        <h4>Philes Kerubo</h4>
+                        <div class="role">Co-Founder & Director</div>
+                        <p>Social worker with 15 years of experience in child welfare.</p>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="team-image">
+                        <img src="images/ld2.png" alt="Esther Kwamboka" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22400%22%20height%3D%22400%22%20viewBox%3D%220%200%20400%20400%22%3E%3Crect%20width%3D%22400%22%20height%3D%22400%22%20fill%3D%22%23c2d9ff%22%2F%3E%3Ctext%20x%3D%2250%22%20y%3D%22200%22%20font-family%3D%22Arial%22%20font-size%3D%2230%22%20fill%3D%22%230B3D91%22%3EEsther%3C%2Ftext%3E%3C%2Fsvg%3E';">
+                    </div>
+                    <div class="team-info">
+                        <h4>Esther Kwamboka</h4>
+                        <div class="role">Co-Founder & Program Manager</div>
+                        <p>Teacher and child rights advocate, passionate about education.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Meet the Matrons & Leaders -->
+        <section>
+            <h2 class="section-title"><i class="fas fa-users"></i> Our Caring Team</h2>
+            <h3 class="section-subtitle">Matrons</h3>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-image">
+                        <img src="images/matron1.png" alt="Mary Auma" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22400%22%20height%3D%22400%22%20viewBox%3D%220%200%20400%20400%22%3E%3Crect%20width%3D%22400%22%20height%3D%22400%22%20fill%3D%22%23c2d9ff%22%2F%3E%3Ctext%20x%3D%2280%22%20y%3D%22200%22%20font-family%3D%22Arial%22%20font-size%3D%2230%22%20fill%3D%22%230B3D91%22%3EMary%3C%2Ftext%3E%3C%2Fsvg%3E';">
+                    </div>
+                    <div class="team-info">
+                        <h4>Mary Auma</h4>
+                        <div class="role">Head Matron</div>
+                        <p>10 years of nursing experience, caring for children's health.</p>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="team-image">
+                        <img src="images/matron2.png" alt="Jane Wanjiku" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22400%22%20height%3D%22400%22%20viewBox%3D%220%200%20400%20400%22%3E%3Crect%20width%3D%22400%22%20height%3D%22400%22%20fill%3D%22%23c2d9ff%22%2F%3E%3Ctext%20x%3D%2260%22%20y%3D%22200%22%20font-family%3D%22Arial%22%20font-size%3D%2230%22%20fill%3D%22%230B3D91%22%3EJane%3C%2Ftext%3E%3C%2Fsvg%3E';">
+                    </div>
+                    <div class="team-info">
+                        <h4>Jane Wanjiku</h4>
+                        <div class="role">Assistant Matron</div>
+                        <p>Specializes in child nutrition and early childhood development.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="section-subtitle">Program Leaders</h3>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-image">
+                        <img src="images/ld3.png" alt="John Mwangi" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22400%22%20height%3D%22400%22%20viewBox%3D%220%200%20400%20400%22%3E%3Crect%20width%3D%22400%22%20height%3D%22400%22%20fill%3D%22%23c2d9ff%22%2F%3E%3Ctext%20x%3D%2270%22%20y%3D%22200%22%20font-family%3D%22Arial%22%20font-size%3D%2230%22%20fill%3D%22%230B3D91%22%3EJohn%3C%2Ftext%3E%3C%2Fsvg%3E';">
+                    </div>
+                    <div class="team-info">
+                        <h4>John Mwangi</h4>
+                        <div class="role">Education Coordinator</div>
+                        <p>Ensures every child attends school and receives academic support.</p>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="team-image">
+                        <img src="images/ld4.png" alt="Lucy Akinyi" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22400%22%20height%3D%22400%22%20viewBox%3D%220%200%20400%20400%22%3E%3Crect%20width%3D%22400%22%20height%3D%22400%22%20fill%3D%22%23c2d9ff%22%2F%3E%3Ctext%20x%3D%2270%22%20y%3D%22200%22%20font-family%3D%22Arial%22%20font-size%3D%2230%22%20fill%3D%22%230B3D91%22%3ELucy%3C%2Ftext%3E%3C%2Fsvg%3E';">
+                    </div>
+                    <div class="team-info">
+                        <h4>Lucy Akinyi</h4>
+                        <div class="role">Counselor & Social Worker</div>
+                        <p>Provides emotional support and trauma care.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Organizational Structure -->
+        <section>
+            <h2 class="section-title"><i class="fas fa-sitemap"></i> Organizational Structure</h2>
+            <div class="org-chart">
+                <div class="org-level">
+                    <div class="org-node">Board of Directors</div>
+                    <div class="org-connector"><i class="fas fa-chevron-down"></i></div>
+                    <div class="org-node">Executive Director</div>
+                    <div class="org-connector"><i class="fas fa-chevron-down"></i></div>
+                    <div class="org-node small">Program Manager</div>
+                    <div class="org-node small">Finance & Admin</div>
+                    <div class="org-node small">Head Matron</div>
+                </div>
+            </div>
+            <p style="text-align:center; margin-top:1rem;">Supported by a team of 15 dedicated staff and regular volunteers.</p>
+        </section>
+
+        <!-- Legal & Registration Details -->
+        <section>
+            <h2 class="section-title"><i class="fas fa-file-contract"></i> Legal & Registration</h2>
+            <div class="legal-grid">
+                <div class="legal-badge">
+                    <i class="fas fa-certificate"></i>
+                    <h4>Registered Children's Home</h4>
+                    <p>No. CHV/Kisii/0092</p>
+                </div>
+                <div class="legal-badge">
+                    <i class="fas fa-hand-holding-heart"></i>
+                    <h4>Non-Profit Organization</h4>
+                    <p>Registered under the NGOs Coordination Board</p>
+                </div>
+                <div class="legal-badge">
+                    <i class="fas fa-shield-alt"></i>
+                    <h4>Child Protection Certified</h4>
+                    <p>Compliant with national standards</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Us -->
+        <section>
+            <h2 class="section-title"><i class="fas fa-check-circle"></i> Why Choose Us</h2>
+            <div class="why-grid">
+                <div class="why-card">
+                    <i class="fas fa-heart"></i>
+                    <h4>Family Environment</h4>
+                    <p>We provide a loving home, not just an institution.</p>
+                </div>
+                <div class="why-card">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h4>Quality Education</h4>
+                    <p>All children attend local schools with sponsorship.</p>
+                </div>
+                <div class="why-card">
+                    <i class="fas fa-hand-holding-heart"></i>
+                    <h4>Holistic Care</h4>
+                    <p>Medical, nutritional, and emotional support.</p>
+                </div>
+                <div class="why-card">
+                    <i class="fas fa-users"></i>
+                    <h4>Community Based</h4>
+                    <p>We work with local leaders and families.</p>
+                </div>
+                <div class="why-card">
+                    <i class="fas fa-eye"></i>
+                    <h4>Transparency</h4>
+                    <p>Regular reports to donors and partners.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4 style="color:var(--soft-gold);">Happiness Home</h4>
+                <p>Nyamiobo, Gucha, Kisii, Kenya</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick links</h4>
+                <p><a href="#">About</a></p>
+                <p><a href="#">Sponsor</a></p>
+                <p><a href="#">Donate</a></p>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <p><i class="fas fa-phone"></i> 0705 917289</p>
+                <p><i class="fas fa-phone"></i> 0700 769001</p>
+                <p><i class="fas fa-envelope"></i> nyandikokwambokaesther@gmail.com</p>
+            </div>
+            <div class="footer-col">
+                <h4>Follow</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">© 2025 Happiness Children's Home. All rights reserved.</div>
+    </footer>
+
+    <script>
+        (function() {
+            const hamburger = document.getElementById('hamburgerBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            hamburger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                mobileMenu.classList.toggle('hide');
+                hamburger.querySelector('i').classList.toggle('fa-bars');
+                hamburger.querySelector('i').classList.toggle('fa-times');
+            });
+            document.addEventListener('click', (e) => {
+                if (!mobileMenu.contains(e.target) && !hamburger.contains(e.target) && !mobileMenu.classList.contains('hide')) {
+                    mobileMenu.classList.add('hide');
+                    hamburger.querySelector('i').classList.remove('fa-times');
+                    hamburger.querySelector('i').classList.add('fa-bars');
+                }
+            });
+        })();
+    </script>
+</body>
+</html>

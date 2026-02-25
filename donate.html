@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Donate - Happiness Children's Home</title>
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #152b42;
+            line-height: 1.5;
+            padding: 0 15px;
+        }
+
+        :root {
+            --dark-blue: #0B3D91;
+            --white: #FFFFFF;
+            --soft-gold: #F4C430;
+            --light-sky: #4DA6FF;
+            --light-bg: #F5F7FA;
+            --shadow: 0 20px 35px -8px rgba(0, 30, 60, 0.15);
+            --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+        }
+
+        /* floating navigation */
+        .floating-nav {
+            position: sticky;
+            top: 15px;
+            z-index: 1000;
+            background-color: var(--dark-blue);
+            box-shadow: 0 4px 16px rgba(0, 20, 40, 0.25);
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto 20px;
+            border-radius: 60px;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.6rem 1.5rem;
+        }
+
+        .logo a {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--white);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .logo i {
+            color: var(--soft-gold);
+            font-size: 2rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 1.8rem;
+            list-style: none;
+        }
+
+        .nav-menu li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: 0.2s;
+            padding-bottom: 0.25rem;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav-menu li a:hover,
+        .nav-menu li a.active {
+            border-bottom-color: var(--soft-gold);
+            color: var(--soft-gold);
+        }
+
+        .donate-btn-nav {
+            background-color: var(--soft-gold);
+            color: var(--dark-blue) !important;
+            padding: 0.5rem 1.8rem !important;
+            border-radius: 40px;
+            font-weight: 600;
+            border-bottom: none !important;
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 2rem;
+            color: white;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* mobile menu */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 85px;
+            left: 15px;
+            right: 15px;
+            background: var(--light-bg);
+            border-radius: 30px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            z-index: 999;
+            border: 2px solid var(--soft-gold);
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .mobile-menu:not(.hide) {
+            display: block;
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+        }
+
+        .mobile-nav-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .mobile-nav-links li a {
+            display: block;
+            padding: 0.8rem 1rem;
+            background: white;
+            color: var(--dark-blue);
+            text-decoration: none;
+            font-weight: 500;
+            border-radius: 40px;
+            text-align: center;
+            border: 1px solid #e0e7f0;
+        }
+
+        .mobile-nav-links .donate-btn-mobile {
+            background: var(--soft-gold);
+            font-weight: 700;
+            border: none;
+        }
+
+        /* floating whatsapp */
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            z-index: 999;
+            text-decoration: none;
+        }
+
+        /* page header */
+        .page-header {
+            text-align: center;
+            margin: 3rem 0 2rem;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            color: var(--dark-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .page-header p {
+            color: #2d3e5f;
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* section titles */
+        .section-title {
+            font-size: 2.2rem;
+            color: var(--dark-blue);
+            margin: 3rem 0 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .section-title i {
+            color: var(--soft-gold);
+        }
+
+        /* why donate cards */
+        .why-donate-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .why-card {
+            background: var(--light-bg);
+            padding: 2rem;
+            border-radius: 40px;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s;
+        }
+
+        .why-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .why-card i {
+            font-size: 3rem;
+            color: var(--dark-blue);
+            margin-bottom: 1rem;
+        }
+
+        .why-card h3 {
+            font-size: 1.5rem;
+            color: var(--dark-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        /* recipient selection */
+        .recipient-section {
+            background: var(--light-bg);
+            border-radius: 60px;
+            padding: 2.5rem;
+            margin: 3rem 0;
+        }
+
+        .recipient-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .recipient-card {
+            background: white;
+            border-radius: 40px;
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+            border: 2px solid transparent;
+            transition: all 0.3s;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .recipient-card.selected {
+            border-color: var(--soft-gold);
+            background: #fffbf0;
+        }
+
+        .recipient-card input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+        }
+
+        .recipient-card .checkmark {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 2px solid #d0ddeb;
+            background: white;
+        }
+
+        .recipient-card.selected .checkmark {
+            border-color: var(--soft-gold);
+            background: var(--soft-gold);
+            box-shadow: inset 0 0 0 5px white;
+        }
+
+        .recipient-card h3 {
+            font-size: 1.6rem;
+            color: var(--dark-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .recipient-card .phone {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--soft-gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .recipient-card .role {
+            color: #64748b;
+            margin-bottom: 1rem;
+        }
+
+        .recipient-detail {
+            background: #f0f4fa;
+            border-radius: 30px;
+            padding: 0.8rem 1rem;
+            margin: 0.5rem 0;
+            font-family: monospace;
+            font-size: 0.95rem;
+        }
+
+        /* payment methods */
+        .payment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .payment-card {
+            background: white;
+            border-radius: 40px;
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+            border: 1px solid #eef3f8;
+        }
+
+        .payment-card h3 {
+            font-size: 1.6rem;
+            color: var(--dark-blue);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .payment-card h3 i {
+            color: var(--soft-gold);
+        }
+
+        .payment-card .btn-payment {
+            display: inline-block;
+            background: var(--soft-gold);
+            color: var(--dark-blue);
+            padding: 0.8rem 1.8rem;
+            border-radius: 60px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: 0.2s;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+        }
+
+        .payment-card .btn-payment:hover {
+            background: #e6b220;
+        }
+
+        .method-detail {
+            background: var(--light-bg);
+            border-radius: 30px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        /* donation form */
+        .donation-form-section {
+            background: var(--dark-blue);
+            color: white;
+            border-radius: 60px;
+            padding: 3rem;
+            margin: 4rem 0;
+        }
+
+        .form-title {
+            font-size: 2rem;
+            color: var(--soft-gold);
+            margin-bottom: 1rem;
+        }
+
+        .donation-form {
+            display: grid;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: var(--soft-gold);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 1rem;
+            border-radius: 40px;
+            border: none;
+            font-family: 'Inter', sans-serif;
+            background: white;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: 2px solid var(--soft-gold);
+        }
+
+        .donation-amounts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin: 1rem 0;
+        }
+
+        .amount-btn {
+            background: rgba(255,255,255,0.2);
+            border: 2px solid transparent;
+            padding: 0.8rem 1.5rem;
+            border-radius: 60px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .amount-btn:hover,
+        .amount-btn.active {
+            background: var(--soft-gold);
+            color: var(--dark-blue);
+            border-color: white;
+        }
+
+        .btn-submit {
+            background: var(--soft-gold);
+            color: var(--dark-blue);
+            padding: 1.2rem;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-top: 1rem;
+        }
+
+        .btn-submit:hover {
+            background: #e6b220;
+            transform: scale(1.02);
+        }
+
+        /* impact calculator */
+        .calculator {
+            background: white;
+            border-radius: 60px;
+            padding: 2.5rem;
+            margin: 3rem 0;
+            color: var(--dark-blue);
+        }
+
+        .calc-display {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--soft-gold);
+            text-align: center;
+            margin: 1rem 0;
+        }
+
+        .calc-slider {
+            width: 100%;
+            margin: 1rem 0;
+        }
+
+        /* transparency section */
+        .transparency-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .transparency-item {
+            text-align: center;
+            background: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: 40px;
+        }
+
+        .transparency-item i {
+            font-size: 2.5rem;
+            color: var(--dark-blue);
+            margin-bottom: 1rem;
+        }
+
+        /* footer */
+        footer {
+            background: var(--dark-blue);
+            color: white;
+            margin-top: 5rem;
+            padding: 3rem 2rem 1.5rem;
+            border-radius: 60px 60px 0 0;
+        }
+
+        .footer-grid {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .footer-col p, .footer-col a {
+            color: #deeaff;
+            text-decoration: none;
+            line-height: 2;
+        }
+
+        .footer-col i {
+            margin-right: 0.7rem;
+            color: var(--soft-gold);
+        }
+
+        .social-icons a {
+            font-size: 2rem;
+            margin-right: 1rem;
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2.5rem;
+            color: #a0b9e0;
+        }
+
+        /* responsive */
+        @media screen and (max-width: 900px) {
+            .nav-menu {
+                display: none;
+            }
+            .hamburger {
+                display: block;
+            }
+            .floating-nav {
+                top: 10px;
+                border-radius: 40px;
+            }
+            .page-header h1 {
+                font-size: 2.4rem;
+            }
+            .donation-form-section {
+                padding: 1.5rem;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            .recipient-card .checkmark {
+                top: 1rem;
+                right: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- floating navigation -->
+    <nav class="floating-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="#"><i class="fas fa-child"></i> Happiness Home</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="programs.html">Programs</a></li>
+            <li><a href="sponsor.html">Sponsor</a></li>
+            <li><a href="donate.html">Donate</a></li>
+            <li><a href="volunteer.html">Volunteer</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="donate.html" class="donate-btn-mobile"><i class="fas fa-heart"></i> Donate Now</a></li>
+            </ul>
+            <button class="hamburger" id="hamburgerBtn"><i class="fas fa-bars"></i></button>
+        </div>
+    </nav>
+
+    <!-- mobile menu -->
+    <div id="mobileMenu" class="mobile-menu hide">
+        <ul class="mobile-nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="programs.html">Programs</a></li>
+            <li><a href="sponsor.html">Sponsor</a></li>
+            <li><a href="donate.html">Donate</a></li>
+            <li><a href="volunteer.html">Volunteer</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="donate.html" class="donate-btn-mobile"><i class="fas fa-heart"></i> Donate Now</a></li>
+        </ul>
+    </div>
+
+    <!-- floating whatsapp -->
+    <a href="https://wa.me/254705917289" class="floating-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i></a>
+
+    <main>
+        <div class="page-header">
+            <h1>Support Our Children</h1>
+            <p>Your donation brings hope, education, and a brighter future to 47 children at Happiness Children's Home.</p>
+        </div>
+
+        <!-- Why Donate Section -->
+        <section>
+            <h2 class="section-title"><i class="fas fa-heart"></i> Why Donate?</h2>
+            <div class="why-donate-grid">
+                <div class="why-card">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3>Education</h3>
+                    <p>Your gift keeps a child in school with uniforms, fees, and supplies.</p>
+                </div>
+                <div class="why-card">
+                    <i class="fas fa-utensils"></i>
+                    <h3>Nutrition</h3>
+                    <p>Provide daily meals for healthy growth and development.</p>
+                </div>
+                <div class="why-card">
+                    <i class="fas fa-stethoscope"></i>
+                    <h3>Healthcare</h3>
+                    <p>Cover medical checkups, treatment, and emergency care.</p>
+                </div>
+                <div class="why-card">
+                    <i class="fas fa-home"></i>
+                    <h3>Safe Shelter</h3>
+                    <p>Maintain a loving home with utilities and care.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recipient Selection (Account 1 or 2) -->
+        <section class="recipient-section">
+            <h2 class="section-title" style="margin-top:0;"><i class="fas fa-user-check"></i> Choose Recipient Account</h2>
+            <p style="margin-bottom:1rem; color:#2d3e5f;">Select which account you'd like your donation to go to. Both are official home accounts.</p>
+            
+            <div class="recipient-grid" id="recipientGrid">
+                <!-- Account 1: Philes Kerubo -->
+                <div class="recipient-card" data-recipient="philes">
+                    <input type="radio" name="recipient" id="rec1" value="philes" checked>
+                    <span class="checkmark"></span>
+                    <h3>Philes Kerubo</h3>
+                    <div class="phone">+254 705 917289</div>
+                    <div class="role">Co-Founder & Director</div>
+                    <div class="recipient-detail">
+                        <i class="fas fa-mobile-alt"></i> M-Pesa / Sendwave: <strong>+254705917289</strong>
+                    </div>
+                    <div class="recipient-detail">
+                        <i class="fas fa-university"></i> Bank: Equity Bank (acc same as phone)
+                    </div>
+                </div>
+
+                <!-- Account 2: Esther Kwamboka -->
+                <div class="recipient-card" data-recipient="esther">
+                    <input type="radio" name="recipient" id="rec2" value="esther">
+                    <span class="checkmark"></span>
+                    <h3>Esther Kwamboka</h3>
+                    <div class="phone">+254 700 769001</div>
+                    <div class="role">Co-Founder & Program Manager</div>
+                    <div class="recipient-detail">
+                        <i class="fas fa-mobile-alt"></i> M-Pesa / Sendwave: <strong>+254700769001</strong>
+                    </div>
+                    <div class="recipient-detail">
+                        <i class="fas fa-university"></i> Bank: KCB Bank (acc same as phone)
+                    </div>
+                </div>
+            </div>
+            <p style="margin-top:1rem; font-size:0.95rem; color:#64748b;"><i class="fas fa-info-circle"></i> These numbers also serve as bank account identifiers. Select one to auto-fill payment details.</p>
+        </section>
+
+        <!-- Payment Methods: Sendwave & WorldRemit -->
+        <section>
+            <h2 class="section-title"><i class="fas fa-credit-card"></i> Payment Methods</h2>
+            <div class="payment-grid">
+                <!-- Sendwave Card -->
+                <div class="payment-card" id="sendwaveCard">
+                    <h3><i class="fas fa-paper-plane"></i> Sendwave</h3>
+                    <p>Fast, low-cost transfers directly to M-Pesa or bank. Available in Kenya.</p>
+                    <div class="method-detail" id="sendwaveDetail">
+                        <strong>Recipient:</strong> <span id="sendwaveName">Philes Kerubo</span><br>
+                        <strong>Phone:</strong> <span id="sendwavePhone">+254705917289</span><br>
+                        <strong>Country:</strong> Kenya<br>
+                        <strong>Mobile Money:</strong> M-Pesa
+                    </div>
+                    <a href="https://www.sendwave.com" target="_blank" class="btn-payment" id="sendwaveBtn"><i class="fas fa-external-link-alt"></i> Donate via Sendwave</a>
+                </div>
+
+                <!-- WorldRemit Card -->
+                <div class="payment-card" id="worldremitCard">
+                    <h3><i class="fas fa-globe"></i> WorldRemit</h3>
+                    <p>Send money to M-Pesa, bank accounts, or cash pickup in Kenya.</p>
+                    <div class="method-detail" id="worldremitDetail">
+                        <strong>Recipient:</strong> <span id="worldremitName">Philes Kerubo</span><br>
+                        <strong>Phone:</strong> <span id="worldremitPhone">+254705917289</span><br>
+                        <strong>Receive Method:</strong> M-Pesa / Bank<br>
+                        <strong>Country:</strong> Kenya
+                    </div>
+                    <a href="https://www.worldremit.com/en/send-money-to-kenya" target="_blank" class="btn-payment" id="worldremitBtn"><i class="fas fa-external-link-alt"></i> Donate via WorldRemit</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Impact Calculator -->
+        <section class="calculator">
+            <h2 style="color:var(--dark-blue); margin-bottom:1rem;"><i class="fas fa-calculator" style="color:var(--soft-gold);"></i> Your Impact Calculator</h2>
+            <p>Move the slider to see how your donation helps:</p>
+            <input type="range" min="100" max="10000" value="1000" step="100" class="calc-slider" id="impactSlider">
+            <div class="calc-display" id="impactDisplay">KSh 1,000 = 5 children fed for a day</div>
+            <p style="text-align:center; margin-top:1rem;">* 1 meal costs approx. KSh 50 per child. Your gift multiplies hope!</p>
+        </section>
+
+        <!-- Secure Donation Form (for tracking, not payment) -->
+        <section class="donation-form-section">
+            <h2 class="form-title"><i class="fas fa-lock"></i> Tell Us About Your Donation</h2>
+            <p>After donating via Sendwave or WorldRemit, please fill this form so we can acknowledge and track your gift. All information is secure.</p>
+            
+            <form class="donation-form" id="donationTrackForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Your Full Name *</label>
+                        <input type="text" placeholder="e.g., John Mwangi" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address *</label>
+                        <input type="email" placeholder="you@example.com" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="tel" placeholder="+254 ...">
+                    </div>
+                    <div class="form-group">
+                        <label>Donation Amount (KSh) *</label>
+                        <input type="number" placeholder="e.g., 1000" required id="donationAmount">
+                    </div>
+                </div>
+
+                <div class="donation-amounts">
+                    <button type="button" class="amount-btn" data-amount="500">KSh 500</button>
+                    <button type="button" class="amount-btn" data-amount="1000">KSh 1,000</button>
+                    <button type="button" class="amount-btn" data-amount="2000">KSh 2,000</button>
+                    <button type="button" class="amount-btn" data-amount="5000">KSh 5,000</button>
+                    <button type="button" class="amount-btn" data-amount="10000">KSh 10,000</button>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Payment Method Used *</label>
+                        <select required>
+                            <option value="">Select method</option>
+                            <option value="sendwave">Sendwave</option>
+                            <option value="worldremit">WorldRemit</option>
+                            <option value="mpesa">M-Pesa (direct)</option>
+                            <option value="bank">Bank Transfer</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Recipient Account *</label>
+                        <select required id="recipientSelect">
+                            <option value="philes">Philes Kerubo (+254705917289)</option>
+                            <option value="esther">Esther Kwamboka (+254700769001)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Transaction Reference (optional)</label>
+                    <input type="text" placeholder="M-Pesa / transaction code if available">
+                </div>
+
+                <div class="form-group">
+                    <label>Message (optional)</label>
+                    <textarea rows="3" placeholder="Leave a message for the children..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit"><i class="fas fa-paper-plane"></i> Submit Donation Info</button>
+                <p style="font-size:0.9rem; margin-top:1rem; text-align:center;"><i class="fas fa-shield-alt"></i> We respect your privacy. This helps us track and thank you.</p>
+            </form>
+        </section>
+
+        <!-- Transparency Section -->
+        <section>
+            <h2 class="section-title"><i class="fas fa-file-invoice"></i> Transparency & Accountability</h2>
+            <div class="transparency-grid">
+                <div class="transparency-item">
+                    <i class="fas fa-certificate"></i>
+                    <h4>Registered Charity</h4>
+                    <p>No. CHV/Kisii/0092</p>
+                </div>
+                <div class="transparency-item">
+                    <i class="fas fa-file-pdf"></i>
+                    <h4>Annual Reports</h4>
+                    <p>Available on request</p>
+                </div>
+                <div class="transparency-item">
+                    <i class="fas fa-users"></i>
+                    <h4>Donor Wall</h4>
+                    <p>We acknowledge all donors</p>
+                </div>
+                <div class="transparency-item">
+                    <i class="fas fa-hand-holding-heart"></i>
+                    <h4>100% to Children</h4>
+                    <p>Minimal overhead</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4 style="color:var(--soft-gold);">Happiness Home</h4>
+                <p>Nyamiobo, Gucha, Kisii, Kenya</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick links</h4>
+                <p><a href="#">About</a></p>
+                <p><a href="#">Sponsor</a></p>
+                <p><a href="#">Donate</a></p>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <p><i class="fas fa-phone"></i> 0705 917289</p>
+                <p><i class="fas fa-phone"></i> 0700 769001</p>
+                <p><i class="fas fa-envelope"></i> nyandikokwambokaesther@gmail.com</p>
+            </div>
+            <div class="footer-col">
+                <h4>Follow</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">© 2025 Happiness Children's Home. All rights reserved.</div>
+    </footer>
+
+    <script>
+        (function() {
+            // Hamburger menu
+            const hamburger = document.getElementById('hamburgerBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            hamburger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                mobileMenu.classList.toggle('hide');
+                hamburger.querySelector('i').classList.toggle('fa-bars');
+                hamburger.querySelector('i').classList.toggle('fa-times');
+            });
+            document.addEventListener('click', (e) => {
+                if (!mobileMenu.contains(e.target) && !hamburger.contains(e.target) && !mobileMenu.classList.contains('hide')) {
+                    mobileMenu.classList.add('hide');
+                    hamburger.querySelector('i').classList.remove('fa-times');
+                    hamburger.querySelector('i').classList.add('fa-bars');
+                }
+            });
+
+            // Recipient selection logic
+            const recipientCards = document.querySelectorAll('.recipient-card');
+            const sendwaveName = document.getElementById('sendwaveName');
+            const sendwavePhone = document.getElementById('sendwavePhone');
+            const worldremitName = document.getElementById('worldremitName');
+            const worldremitPhone = document.getElementById('worldremitPhone');
+            const recipientSelect = document.getElementById('recipientSelect');
+
+            function updateRecipient(selectedValue) {
+                // Update card selected state
+                recipientCards.forEach(card => {
+                    const radio = card.querySelector('input[type="radio"]');
+                    if (radio.value === selectedValue) {
+                        card.classList.add('selected');
+                        radio.checked = true;
+                    } else {
+                        card.classList.remove('selected');
+                    }
+                });
+
+                // Update payment method details
+                if (selectedValue === 'philes') {
+                    sendwaveName.textContent = 'Philes Kerubo';
+                    sendwavePhone.textContent = '+254705917289';
+                    worldremitName.textContent = 'Philes Kerubo';
+                    worldremitPhone.textContent = '+254705917289';
+                    recipientSelect.value = 'philes';
+                } else {
+                    sendwaveName.textContent = 'Esther Kwamboka';
+                    sendwavePhone.textContent = '+254700769001';
+                    worldremitName.textContent = 'Esther Kwamboka';
+                    worldremitPhone.textContent = '+254700769001';
+                    recipientSelect.value = 'esther';
+                }
+            }
+
+            recipientCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    const radio = card.querySelector('input[type="radio"]');
+                    updateRecipient(radio.value);
+                });
+            });
+
+            // Initialize with first recipient (Philes)
+            updateRecipient('philes');
+
+            // Impact calculator
+            const slider = document.getElementById('impactSlider');
+            const display = document.getElementById('impactDisplay');
+            slider.addEventListener('input', () => {
+                const val = parseInt(slider.value);
+                const meals = Math.floor(val / 50);
+                const children = Math.floor(meals / 3); // 3 meals per child per day
+                display.textContent = `KSh ${val.toLocaleString()} = ${meals} meals = ${children} children fed for a day`;
+            });
+
+            // Donation amount preset buttons
+            const amountBtns = document.querySelectorAll('.amount-btn');
+            const amountInput = document.getElementById('donationAmount');
+            amountBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const amount = btn.getAttribute('data-amount');
+                    amountInput.value = amount;
+                    amountBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                });
+            });
+
+            // Form submission (prevent default and show thank you)
+            const form = document.getElementById('donationTrackForm');
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('Thank you for your donation! We will acknowledge it shortly. God bless you!');
+                form.reset();
+            });
+
+            // Payment method buttons - open in new tab with recipient info in URL params (simulated)
+            document.getElementById('sendwaveBtn').addEventListener('click', (e) => {
+                e.preventDefault();
+                const recipient = document.querySelector('input[name="recipient"]:checked').value;
+                const phone = recipient === 'philes' ? '+254705917289' : '+254700769001';
+                // In real scenario, you'd redirect with params if the service supports it.
+                // For now, open main site and show alert.
+                window.open('https://www.sendwave.com', '_blank');
+                alert(`Sendwave: Please send to ${phone} (${recipient === 'philes' ? 'Philes' : 'Esther'})`);
+            });
+
+            document.getElementById('worldremitBtn').addEventListener('click', (e) => {
+                e.preventDefault();
+                const recipient = document.querySelector('input[name="recipient"]:checked').value;
+                const phone = recipient === 'philes' ? '+254705917289' : '+254700769001';
+                window.open('https://www.worldremit.com/en/send-money-to-kenya', '_blank');
+                alert(`WorldRemit: Send to ${phone} (${recipient === 'philes' ? 'Philes' : 'Esther'}) - choose M-Pesa or bank deposit.`);
+            });
+        })();
+    </script>
+</body>
+</html>

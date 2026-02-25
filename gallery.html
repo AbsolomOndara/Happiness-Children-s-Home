@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Gallery - Happiness Children's Home</title>
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #1e2b37;
+            line-height: 1.5;
+            padding: 0 15px;
+        }
+
+        :root {
+            --dark-blue: #0B3D91;
+            --white: #FFFFFF;
+            --soft-gold: #F4C430;
+            --light-sky: #4DA6FF;
+            --light-bg: #F5F7FA;
+            --shadow: 0 20px 35px -8px rgba(0, 30, 60, 0.15);
+            --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+        }
+
+        /* ---------- floating navigation (consistent with home) ---------- */
+        .floating-nav {
+            position: sticky;
+            top: 15px;
+            z-index: 1000;
+            background-color: var(--dark-blue);
+            box-shadow: 0 4px 16px rgba(0, 20, 40, 0.25);
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto 20px;
+            border-radius: 60px;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.6rem 1.5rem;
+        }
+
+        .logo a {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--white);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .logo i {
+            color: var(--soft-gold);
+            font-size: 2rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 1.8rem;
+            list-style: none;
+        }
+
+        .nav-menu li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: 0.2s;
+            padding-bottom: 0.25rem;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav-menu li a:hover,
+        .nav-menu li a.active {
+            border-bottom-color: var(--soft-gold);
+            color: var(--soft-gold);
+        }
+
+        .donate-btn-nav {
+            background-color: var(--soft-gold);
+            color: var(--dark-blue) !important;
+            padding: 0.5rem 1.8rem !important;
+            border-radius: 40px;
+            font-weight: 600;
+            border-bottom: none !important;
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 2rem;
+            color: white;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* mobile menu */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 85px;
+            left: 15px;
+            right: 15px;
+            background: var(--light-bg);
+            border-radius: 30px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            z-index: 999;
+            border: 2px solid var(--soft-gold);
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .mobile-menu:not(.hide) {
+            display: block;
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+        }
+
+        .mobile-nav-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .mobile-nav-links li a {
+            display: block;
+            padding: 0.8rem 1rem;
+            background: white;
+            color: var(--dark-blue);
+            text-decoration: none;
+            font-weight: 500;
+            border-radius: 40px;
+            text-align: center;
+            border: 1px solid #e0e7f0;
+        }
+
+        .mobile-nav-links .donate-btn-mobile {
+            background: var(--soft-gold);
+            font-weight: 700;
+            border: none;
+        }
+
+        /* main content */
+        .page-header {
+            text-align: center;
+            margin: 3rem 0 2rem;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            color: var(--dark-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .page-header p {
+            color: #2d3e5f;
+            font-size: 1.1rem;
+        }
+
+        /* ---------- gallery grid ---------- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0 4rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            aspect-ratio: 1 / 1;
+            cursor: pointer;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 25px 35px -10px rgba(11,61,145,0.3);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(11,61,145,0.9), transparent);
+            color: white;
+            padding: 1rem;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover .overlay {
+            transform: translateY(0);
+        }
+
+        /* ---------- lightbox modal ---------- */
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .lightbox-modal.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            max-width: 90vw;
+            max-height: 80vh;
+            position: relative;
+        }
+
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 16px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 3rem;
+            color: white;
+            cursor: pointer;
+            background: none;
+            border: none;
+            z-index: 2001;
+        }
+
+        .lightbox-prev, .lightbox-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--soft-gold);
+            color: var(--dark-blue);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: 0.2s;
+        }
+
+        .lightbox-prev:hover, .lightbox-next:hover {
+            background: #e6b220;
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        .lightbox-prev {
+            left: 20px;
+        }
+
+        .lightbox-next {
+            right: 20px;
+        }
+
+        .lightbox-counter {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 1rem;
+            background: rgba(0,0,0,0.5);
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+        }
+
+        /* ---------- video section ---------- */
+        .section-title {
+            font-size: 2.2rem;
+            color: var(--dark-blue);
+            margin: 3rem 0 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .video-card {
+            background: white;
+            border-radius: 32px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+
+        .video-thumb {
+            position: relative;
+            aspect-ratio: 16 / 9;
+            background: #c2d9ff;
+        }
+
+        .video-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--soft-gold);
+            color: var(--dark-blue);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .play-icon:hover {
+            background: #e6b220;
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .video-info {
+            padding: 1.5rem;
+        }
+
+        .video-info h4 {
+            font-size: 1.3rem;
+            color: var(--dark-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        /* ---------- events highlights ---------- */
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .event-card {
+            background: white;
+            border-radius: 32px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .event-image {
+            height: 200px;
+            background: #b8d5ff;
+        }
+
+        .event-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .event-details {
+            padding: 1.5rem;
+        }
+
+        .event-date {
+            color: var(--soft-gold);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .event-details h4 {
+            font-size: 1.4rem;
+            color: var(--dark-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        /* ---------- before & after ---------- */
+        .ba-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .ba-card {
+            background: white;
+            border-radius: 32px;
+            padding: 1.5rem;
+            box-shadow: var(--card-shadow);
+        }
+
+        .ba-images {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .ba-images div {
+            flex: 1;
+            aspect-ratio: 1 / 1;
+            border-radius: 24px;
+            overflow: hidden;
+        }
+
+        .ba-images img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .ba-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            color: var(--dark-blue);
+            font-weight: 600;
+        }
+
+        .ba-story {
+            color: #2d3e5f;
+        }
+
+        /* ---------- footer ---------- */
+        footer {
+            background: var(--dark-blue);
+            color: white;
+            margin-top: 5rem;
+            padding: 3rem 2rem 1.5rem;
+            border-radius: 60px 60px 0 0;
+        }
+
+        .footer-grid {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .footer-col p, .footer-col a {
+            color: #deeaff;
+            text-decoration: none;
+            line-height: 2;
+        }
+
+        .footer-col i {
+            margin-right: 0.7rem;
+            color: var(--soft-gold);
+        }
+
+        .social-icons a {
+            font-size: 2rem;
+            margin-right: 1rem;
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2.5rem;
+            color: #a0b9e0;
+        }
+
+        /* ---------- responsive ---------- */
+        @media screen and (max-width: 900px) {
+            .nav-menu {
+                display: none;
+            }
+            .hamburger {
+                display: block;
+            }
+            .floating-nav {
+                top: 10px;
+                border-radius: 40px;
+            }
+            .page-header h1 {
+                font-size: 2.4rem;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 1rem;
+            }
+            .lightbox-prev, .lightbox-next {
+                width: 40px;
+                height: 40px;
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- floating navigation (consistent with global style) -->
+    <nav class="floating-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="#"><i class="fas fa-child"></i> Happiness Home</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="programs.html">Programs</a></li>
+            <li><a href="sponsor.html">Sponsor</a></li>
+            <li><a href="donate.html">Donate</a></li>
+            <li><a href="volunteer.html">Volunteer</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="donate.html" class="donate-btn-mobile"><i class="fas fa-heart"></i> Donate Now</a></li>
+            </ul>
+            <button class="hamburger" id="hamburgerBtn"><i class="fas fa-bars"></i></button>
+        </div>
+    </nav>
+
+    <!-- mobile menu -->
+    <div id="mobileMenu" class="mobile-menu hide">
+        <ul class="mobile-nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="programs.html">Programs</a></li>
+            <li><a href="sponsor.html">Sponsor</a></li>
+            <li><a href="donate.html">Donate</a></li>
+            <li><a href="volunteer.html">Volunteer</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="donate.html" class="donate-btn-mobile"><i class="fas fa-heart"></i> Donate Now</a></li>
+        </ul>
+    </div>
+
+    <main>
+        <div class="page-header">
+            <h1>Our Gallery</h1>
+            <p>Moments of love, care, and happiness from our home</p>
+        </div>
+
+        <!-- PHOTO GALLERY GRID (images g1.jpg to g20.jpg) -->
+        <h2 class="section-title"><i class="fas fa-camera" style="color:var(--soft-gold);"></i> Photo Gallery</h2>
+        <div class="gallery-grid" id="galleryGrid"></div>
+
+        <!-- VIDEO SECTION -->
+        <h2 class="section-title"><i class="fas fa-video" style="color:var(--soft-gold);"></i> Video Stories</h2>
+        <div class="video-grid">
+            <div class="video-card">
+                <div class="video-thumb">
+                    <img src="images/g1.jpg" alt="video thumbnail" loading="lazy">
+                    <div class="play-icon"><i class="fas fa-play"></i></div>
+                </div>
+                <div class="video-info">
+                    <h4>A Day at Happiness Home</h4>
+                    <p>Watch our children enjoy daily activities.</p>
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-thumb">
+                    <img src="images/g2.jpg" alt="video thumbnail" loading="lazy">
+                    <div class="play-icon"><i class="fas fa-play"></i></div>
+                </div>
+                <div class="video-info">
+                    <h4>Graduation Ceremony 2025</h4>
+                    <p>Celebrating our children's achievements.</p>
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-thumb">
+                    <img src="images/g3.jpg" alt="video thumbnail" loading="lazy">
+                    <div class="play-icon"><i class="fas fa-play"></i></div>
+                </div>
+                <div class="video-info">
+                    <h4>Volunteers Visit</h4>
+                    <p>Special moments with our volunteers.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- EVENTS HIGHLIGHTS -->
+        <h2 class="section-title"><i class="fas fa-calendar-alt" style="color:var(--soft-gold);"></i> Events Highlights</h2>
+        <div class="events-grid">
+            <div class="event-card">
+                <div class="event-image"><img src="images/g4.jpg" alt="event" loading="lazy"></div>
+                <div class="event-details">
+                    <div class="event-date">March 15, 2025</div>
+                    <h4>Children's Day Party</h4>
+                    <p>Fun games, cake, and lots of smiles.</p>
+                </div>
+            </div>
+            <div class="event-card">
+                <div class="event-image"><img src="images/g5.jpg" alt="event" loading="lazy"></div>
+                <div class="event-details">
+                    <div class="event-date">January 20, 2025</div>
+                    <h4>New Dormitory Inauguration</h4>
+                    <p>A new safe space for our girls.</p>
+                </div>
+            </div>
+            <div class="event-card">
+                <div class="event-image"><img src="images/g6.jpg" alt="event" loading="lazy"></div>
+                <div class="event-details">
+                    <div class="event-date">December 10, 2024</div>
+                    <h4>Christmas Celebration</h4>
+                    <p>Gifts and festive joy with sponsors.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- BEFORE & AFTER STORIES -->
+        <h2 class="section-title"><i class="fas fa-heart" style="color:var(--soft-gold);"></i> Before & After</h2>
+        <div class="ba-grid">
+            <div class="ba-card">
+                <div class="ba-images">
+                    <div><img src="images/g7.jpg" alt="before" loading="lazy"></div>
+                    <div><img src="images/g8.jpg" alt="after" loading="lazy"></div>
+                </div>
+                <div class="ba-label">
+                    <span>Before</span>
+                    <span>After</span>
+                </div>
+                <p class="ba-story">Akinyi arrived malnourished; today she's thriving in school.</p>
+            </div>
+            <div class="ba-card">
+                <div class="ba-images">
+                    <div><img src="images/g9.jpg" alt="before" loading="lazy"></div>
+                    <div><img src="images/g10.jpg" alt="after" loading="lazy"></div>
+                </div>
+                <div class="ba-label">
+                    <span>Before</span>
+                    <span>After</span>
+                </div>
+                <p class="ba-story">Our new library transformed from a storage room.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- LIGHTBOX MODAL -->
+    <div class="lightbox-modal" id="lightboxModal">
+        <button class="lightbox-close" id="lightboxClose">&times;</button>
+        <button class="lightbox-prev" id="lightboxPrev"><i class="fas fa-chevron-left"></i></button>
+        <button class="lightbox-next" id="lightboxNext"><i class="fas fa-chevron-right"></i></button>
+        <div class="lightbox-content">
+            <img src="" alt="" id="lightboxImg">
+        </div>
+        <div class="lightbox-counter" id="lightboxCounter"></div>
+    </div>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4 style="color:var(--soft-gold);">Happiness Home</h4>
+                <p>Nyamiobo, Gucha, Kisii, Kenya</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick links</h4>
+                <p><a href="#">About</a></p>
+                <p><a href="#">Sponsor</a></p>
+                <p><a href="#">Donate</a></p>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <p><i class="fas fa-phone"></i> 0705 917289</p>
+                <p><i class="fas fa-phone"></i> 0700 769001</p>
+                <p><i class="fas fa-envelope"></i> nyandikokwambokaesther@gmail.com</p>
+            </div>
+            <div class="footer-col">
+                <h4>Follow</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">© 2025 Happiness Children's Home. All rights reserved.</div>
+    </footer>
+
+    <script>
+        (function() {
+            // ---------- hamburger menu ----------
+            const hamburger = document.getElementById('hamburgerBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            hamburger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                mobileMenu.classList.toggle('hide');
+                hamburger.querySelector('i').classList.toggle('fa-bars');
+                hamburger.querySelector('i').classList.toggle('fa-times');
+            });
+            document.addEventListener('click', (e) => {
+                if (!mobileMenu.contains(e.target) && !hamburger.contains(e.target) && !mobileMenu.classList.contains('hide')) {
+                    mobileMenu.classList.add('hide');
+                    hamburger.querySelector('i').classList.remove('fa-times');
+                    hamburger.querySelector('i').classList.add('fa-bars');
+                }
+            });
+
+            // ---------- generate gallery with images g1.jpg to g20.jpg ----------
+            const galleryGrid = document.getElementById('galleryGrid');
+            const totalImages = 20;
+            const imageNames = [];
+            for (let i = 1; i <= totalImages; i++) {
+                imageNames.push(`g${i}.jpg`);
+            }
+
+            // fallback if images missing: use placeholder with gradient and text
+            imageNames.forEach(name => {
+                const item = document.createElement('div');
+                item.className = 'gallery-item';
+                item.setAttribute('data-index', imageNames.indexOf(name));
+                const img = document.createElement('img');
+                img.src = `images/${name}`;
+                img.alt = `Gallery image ${name}`;
+                img.loading = 'lazy';
+                img.onerror = function() {
+                    this.onerror = null;
+                    this.src = 'data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22400%22%20height%3D%22400%22%20viewBox%3D%220%200%20400%20400%22%3E%3Crect%20width%3D%22400%22%20height%3D%22400%22%20fill%3D%22%23c2d9ff%22%2F%3E%3Ctext%20x%3D%22120%22%20y%3D%22200%22%20font-family%3D%22Arial%22%20font-size%3D%2224%22%20fill%3D%22%230B3D91%22%3EImage%3C%2Ftext%3E%3C%2Fsvg%3E';
+                };
+                item.appendChild(img);
+                const overlay = document.createElement('div');
+                overlay.className = 'overlay';
+                overlay.innerHTML = '<i class="fas fa-search-plus"></i> Click to enlarge';
+                item.appendChild(overlay);
+                item.addEventListener('click', () => openLightbox(imageNames.indexOf(name)));
+                galleryGrid.appendChild(item);
+            });
+
+            // ---------- lightbox logic ----------
+            const modal = document.getElementById('lightboxModal');
+            const modalImg = document.getElementById('lightboxImg');
+            const closeBtn = document.getElementById('lightboxClose');
+            const prevBtn = document.getElementById('lightboxPrev');
+            const nextBtn = document.getElementById('lightboxNext');
+            const counter = document.getElementById('lightboxCounter');
+            let currentIndex = 0;
+
+            function openLightbox(index) {
+                currentIndex = index;
+                updateLightboxImage();
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function updateLightboxImage() {
+                const imgName = imageNames[currentIndex];
+                modalImg.src = `images/${imgName}`;
+                modalImg.alt = `Gallery image ${imgName}`;
+                counter.textContent = `${currentIndex + 1} / ${totalImages}`;
+                // fallback if image missing
+                modalImg.onerror = function() {
+                    this.onerror = null;
+                    this.src = 'data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%20viewBox%3D%220%200%20800%20800%22%3E%3Crect%20width%3D%22800%22%20height%3D%22800%22%20fill%3D%22%23c2d9ff%22%2F%3E%3Ctext%20x%3D%22300%22%20y%3D%22400%22%20font-family%3D%22Arial%22%20font-size%3D%2240%22%20fill%3D%22%230B3D91%22%3ENo%20image%3C%2Ftext%3E%3C%2Fsvg%3E';
+                };
+            }
+
+            function closeLightbox() {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            function prevImage() {
+                currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+                updateLightboxImage();
+            }
+
+            function nextImage() {
+                currentIndex = (currentIndex + 1) % totalImages;
+                updateLightboxImage();
+            }
+
+            closeBtn.addEventListener('click', closeLightbox);
+            prevBtn.addEventListener('click', prevImage);
+            nextBtn.addEventListener('click', nextImage);
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeLightbox();
+            });
+            document.addEventListener('keydown', (e) => {
+                if (!modal.classList.contains('active')) return;
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowLeft') prevImage();
+                if (e.key === 'ArrowRight') nextImage();
+            });
+
+            // play icon click (just demo, you can link to YouTube)
+            document.querySelectorAll('.play-icon').forEach(icon => {
+                icon.addEventListener('click', () => alert('Video would play here.'));
+            });
+        })();
+    </script>
+</body>
+</html>
