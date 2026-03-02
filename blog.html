@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Blog - Happiness Children's Home</title>
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #152b42;
+            line-height: 1.5;
+            padding: 0 15px;
+        }
+
+        :root {
+            --dark-blue: #0B3D91;
+            --white: #FFFFFF;
+            --soft-gold: #F4C430;
+            --light-sky: #4DA6FF;
+            --light-bg: #F5F7FA;
+            --shadow: 0 20px 35px -8px rgba(0, 30, 60, 0.15);
+            --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+        }
+
+        /* floating navigation */
+        .floating-nav {
+            position: sticky;
+            top: 15px;
+            z-index: 1000;
+            background-color: var(--dark-blue);
+            box-shadow: 0 4px 16px rgba(0, 20, 40, 0.25);
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto 20px;
+            border-radius: 60px;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.6rem 1.5rem;
+        }
+
+        .logo a {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--white);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .logo i {
+            color: var(--soft-gold);
+            font-size: 2rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 1.8rem;
+            list-style: none;
+        }
+
+        .nav-menu li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: 0.2s;
+            padding-bottom: 0.25rem;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav-menu li a:hover,
+        .nav-menu li a.active {
+            border-bottom-color: var(--soft-gold);
+            color: var(--soft-gold);
+        }
+
+        .donate-btn-nav {
+            background-color: var(--soft-gold);
+            color: var(--dark-blue) !important;
+            padding: 0.5rem 1.8rem !important;
+            border-radius: 40px;
+            font-weight: 600;
+            border-bottom: none !important;
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 2rem;
+            color: white;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* mobile menu */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 85px;
+            left: 15px;
+            right: 15px;
+            background: var(--light-bg);
+            border-radius: 30px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            z-index: 999;
+            border: 2px solid var(--soft-gold);
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .mobile-menu:not(.hide) {
+            display: block;
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+        }
+
+        .mobile-nav-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .mobile-nav-links li a {
+            display: block;
+            padding: 0.8rem 1rem;
+            background: white;
+            color: var(--dark-blue);
+            text-decoration: none;
+            font-weight: 500;
+            border-radius: 40px;
+            text-align: center;
+            border: 1px solid #e0e7f0;
+        }
+
+        .mobile-nav-links .donate-btn-mobile {
+            background: var(--soft-gold);
+            font-weight: 700;
+            border: none;
+        }
+
+        /* floating whatsapp */
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            z-index: 999;
+            text-decoration: none;
+        }
+
+        /* page header */
+        .page-header {
+            text-align: center;
+            margin: 3rem 0 2rem;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            color: var(--dark-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .page-header p {
+            color: #2d3e5f;
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* blog grid */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .blog-card {
+            background: white;
+            border-radius: 40px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #edf2f9;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 30px -8px rgba(11,61,145,0.2);
+        }
+
+        .blog-image {
+            height: 200px;
+            overflow: hidden;
+            background: #c2d9ff;
+        }
+
+        .blog-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s;
+        }
+
+        .blog-card:hover .blog-image img {
+            transform: scale(1.05);
+        }
+
+        .blog-content {
+            padding: 1.8rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .blog-source {
+            background: var(--soft-gold);
+            color: var(--dark-blue);
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+
+        .blog-date {
+            color: #64748b;
+        }
+
+        .blog-title {
+            font-size: 1.4rem;
+            color: var(--dark-blue);
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .blog-summary {
+            color: #4a5f79;
+            margin-bottom: 1.5rem;
+            flex: 1;
+        }
+
+        .blog-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+
+        .blog-author {
+            font-size: 0.9rem;
+            color: var(--dark-blue);
+            font-weight: 500;
+        }
+
+        .btn-read {
+            display: inline-block;
+            background: var(--dark-blue);
+            color: white;
+            padding: 0.6rem 1.5rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: 0.2s;
+        }
+
+        .btn-read:hover {
+            background: #0f4bb8;
+            transform: scale(1.02);
+        }
+
+        .btn-read i {
+            margin-left: 0.3rem;
+            transition: transform 0.2s;
+        }
+
+        .btn-read:hover i {
+            transform: translateX(4px);
+        }
+
+        /* filter / search bar (optional) */
+        .blog-toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .filter-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .filter-tab {
+            background: white;
+            border: 1px solid #d0ddeb;
+            padding: 0.5rem 1.5rem;
+            border-radius: 60px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .filter-tab:hover,
+        .filter-tab.active {
+            background: var(--dark-blue);
+            color: white;
+            border-color: var(--dark-blue);
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            background: white;
+            border: 1px solid #d0ddeb;
+            border-radius: 60px;
+            overflow: hidden;
+        }
+
+        .search-box input {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            outline: none;
+            font-family: 'Inter', sans-serif;
+            width: 250px;
+        }
+
+        .search-box button {
+            background: none;
+            border: none;
+            padding: 0 1.5rem;
+            color: var(--dark-blue);
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        /* newsletter section */
+        .newsletter-section {
+            background: var(--dark-blue);
+            color: white;
+            border-radius: 60px;
+            padding: 3rem;
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .newsletter-section h2 {
+            font-size: 2.2rem;
+            color: var(--soft-gold);
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 2rem auto 0;
+            background: white;
+            border-radius: 60px;
+            overflow: hidden;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: none;
+            outline: none;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .newsletter-form button {
+            background: var(--soft-gold);
+            color: var(--dark-blue);
+            border: none;
+            padding: 0 2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .newsletter-form button:hover {
+            background: #e6b220;
+        }
+
+        /* footer */
+        footer {
+            background: var(--dark-blue);
+            color: white;
+            margin-top: 5rem;
+            padding: 3rem 2rem 1.5rem;
+            border-radius: 60px 60px 0 0;
+        }
+
+        .footer-grid {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .footer-col p, .footer-col a {
+            color: #deeaff;
+            text-decoration: none;
+            line-height: 2;
+        }
+
+        .footer-col i {
+            margin-right: 0.7rem;
+            color: var(--soft-gold);
+        }
+
+        .social-icons a {
+            font-size: 2rem;
+            margin-right: 1rem;
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2.5rem;
+            color: #a0b9e0;
+        }
+
+        /* responsive */
+        @media screen and (max-width: 900px) {
+            .nav-menu {
+                display: none;
+            }
+            .hamburger {
+                display: block;
+            }
+            .floating-nav {
+                top: 10px;
+                border-radius: 40px;
+            }
+            .page-header h1 {
+                font-size: 2.4rem;
+            }
+            .blog-toolbar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .search-box input {
+                width: 100%;
+            }
+            .newsletter-form {
+                flex-direction: column;
+                border-radius: 40px;
+            }
+            .newsletter-form button {
+                padding: 1rem;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            .blog-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- floating navigation -->
+    <nav class="floating-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="#"><i class="fas fa-child"></i> Happiness Home</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="programs.html">Programs</a></li>
+            <li><a href="sponsor.html">Sponsor</a></li>
+            <li><a href="donate.html">Donate</a></li>
+            <li><a href="volunteer.html">Volunteer</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="donate.html" class="donate-btn-mobile"><i class="fas fa-heart"></i> Donate Now</a></li>
+            </ul>
+            <button class="hamburger" id="hamburgerBtn"><i class="fas fa-bars"></i></button>
+        </div>
+    </nav>
+
+    <!-- mobile menu -->
+    <div id="mobileMenu" class="mobile-menu hide">
+        <ul class="mobile-nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="programs.html">Programs</a></li>
+            <li><a href="sponsor.html">Sponsor</a></li>
+            <li><a href="donate.html">Donate</a></li>
+            <li><a href="volunteer.html">Volunteer</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="donate.html" class="donate-btn-mobile"><i class="fas fa-heart"></i> Donate Now</a></li>
+        </ul>
+    </div>
+
+    <!-- floating whatsapp -->
+    <a href="https://wa.me/254705917289" class="floating-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i></a>
+
+    <main>
+        <div class="page-header">
+            <h1>Our Blog</h1>
+            <p>Curated articles and stories about children's homes, care, and family support</p>
+        </div>
+
+        <!-- blog toolbar (filter & search - decorative) -->
+        <div class="blog-toolbar">
+            <div class="filter-tabs">
+                <span class="filter-tab active">All</span>
+                <span class="filter-tab">Child Care</span>
+                <span class="filter-tab">Family Support</span>
+                <span class="filter-tab">Kenya</span>
+                <span class="filter-tab">Sponsorship</span>
+            </div>
+            <div class="search-box">
+                <input type="text" placeholder="Search articles...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+
+        <!-- blog posts grid - curated from high-authority sources -->
+        <div class="blog-grid">
+            <!-- 1. Academic research: Child-First lens for children's homes -->
+            <div class="blog-card">
+                <div class="blog-image">
+                    <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22400%22%20height%3D%22200%22%20viewBox%3D%220%200%20400%20200%22%3E%3Crect%20width%3D%22400%22%20height%3D%22200%22%20fill%3D%22%234DA6FF%22%2F%3E%3Ctext%20x%3D%2250%22%20y%3D%22120%22%20font-family%3D%22Arial%22%20font-size%3D%2224%22%20fill%3D%22%23FFFFFF%22%3EResearch%3C%2Ftext%3E%3C%2Fsvg%3E" alt="Research thumbnail">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span class="blog-source">Academic Journal</span>
+                        <span class="blog-date">2024</span>
+                    </div>
+                    <h3 class="blog-title">Re-Designing Secure Children’s Homes Through a Child-First Lens</h3>
+                    <p class="blog-summary">Key insights from a study with 53 participants: children's homes should be close to home to enable family involvement, feel like a home, and be flexible to changing needs. Informs design of new homes in England.</p>
+                    <div class="blog-footer">
+                        <span class="blog-author">Andow et al., Societies</span>
+                        <a href="https://eprints.glos.ac.uk/14488/" class="btn-read" target="_blank" rel="noopener noreferrer">Read <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Holt International: field notes on education support -->
+            <div class="blog-card">
+                <div class="blog-image">
+                    <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22400%22%20height%3D%22200%22%20viewBox%3D%220%200%20400%20200%22%3E%3Crect%20width%3D%22400%22%20height%3D%22200%22%20fill%3D%22%23F4C430%22%2F%3E%3Ctext%20x%3D%2250%22%20y%3D%22120%22%20font-family%3D%22Arial%22%20font-size%3D%2224%22%20fill%3D%22%230B3D91%22%3EHolt%20Intl%3C%2Ftext%3E%3C%2Fsvg%3E" alt="Holt International">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span class="blog-source">Holt International</span>
+                        <span class="blog-date">Oct 2025</span>
+                    </div>
+                    <h3 class="blog-title">Global Field Notes: Education & Family Strengthening</h3>
+                    <p class="blog-summary">Updates from Cambodia, Colombia, Ethiopia, India, Mongolia, Uganda. Over 1,300 children received school supplies; kinship care, foster care, and domestic adoption programs; nutrition training for 853 caregivers.</p>
+                    <div class="blog-footer">
+                        <span class="blog-author">Holt International</span>
+                        <a href="https://www.holtinternational.org/notes-from-the-field-october-2025/" class="btn-read" target="_blank" rel="noopener noreferrer">Read <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. UNHCR Kenya: child protection services -->
+            <div class="blog-card">
+                <div class="blog-image">
+                    <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22400%22%20height%3D%22200%22%20viewBox%3D%220%200%20400%20200%22%3E%3Crect%20width%3D%22400%22%20height%3D%22200%22%20fill%3D%22%230B3D91%22%2F%3E%3Ctext%20x%3D%2250%22%20y%3D%22120%22%20font-family%3D%22Arial%22%20font-size%3D%2224%22%20fill%3D%22%23FFFFFF%22%3EUNHCR%20Kenya%3C%2Ftext%3E%3C%2Fsvg%3E" alt="UNHCR Kenya">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span class="blog-source">UNHCR Kenya</span>
+                        <span class="blog-date">2024</span>
+                    </div>
+                    <h3 class="blog-title">Child Protection Services in Kenya</h3>
+                    <p class="blog-summary">Comprehensive guide for children at risk: family tracing, reunification, alternative care, psychosocial support. Includes contacts for organizations like HIAS, Kenya Red Cross, Refugee Consortium of Kenya, and RefuSHE.</p>
+                    <div class="blog-footer">
+                        <span class="blog-author">UNHCR</span>
+                        <a href="https://help.unhcr.org/kenya/helpful-services/children-at-risk/" class="btn-read" target="_blank" rel="noopener noreferrer">Read <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. A Family for Every Orphan: twin brothers adoption story -->
+            <div class="blog-card">
+                <div class="blog-image">
+                    <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22400%22%20height%3D%22200%22%20viewBox%3D%220%200%20400%20200%22%3E%3Crect%20width%3D%22400%22%20height%3D%22200%22%20fill%3D%22%23c2d9ff%22%2F%3E%3Ctext%20x%3D%2250%22%20y%3D%22120%22%20font-family%3D%22Arial%22%20font-size%3D%2224%22%20fill%3D%22%230B3D91%22%3EFamily%20Story%3C%2Ftext%3E%3C%2Fsvg%3E" alt="Family story">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span class="blog-source">A Family for Every Orphan</span>
+                        <span class="blog-date">2025</span>
+                    </div>
+                    <h3 class="blog-title">A Home Full of Hope: Four Brothers Reunited</h3>
+                    <p class="blog-summary">Inspiring story of twin infants adopted by Mariah and Umar, who later adopted their older twin brothers from an orphanage. All four brothers now grow up together in a loving family.</p>
+                    <div class="blog-footer">
+                        <span class="blog-author">AFFEO</span>
+                        <a href="https://afamilyforeveryorphan.org/a-home-full-of-hope/" class="btn-read" target="_blank" rel="noopener noreferrer">Read <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. Kenya Children Services: government programs -->
+            <div class="blog-card">
+                <div class="blog-image">
+                    <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22400%22%20height%3D%22200%22%20viewBox%3D%220%200%20400%20200%22%3E%3Crect%20width%3D%22400%22%20height%3D%22200%22%20fill%3D%22%230B3D91%22%2F%3E%3Ctext%20x%3D%2230%22%20y%3D%22120%22%20font-family%3D%22Arial%22%20font-size%3D%2220%22%20fill%3D%22%23FFFFFF%22%3EGovt%20of%20Kenya%3C%2Ftext%3E%3C%2Fsvg%3E" alt="Kenya government">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span class="blog-source">Kenya Children Services</span>
+                        <span class="blog-date">2025</span>
+                    </div>
+                    <h3 class="blog-title">Community Child Support Programs</h3>
+                    <p class="blog-summary">Government initiatives: Nutrition Improvement through Cash and Health Education (NICHE), Presidential Secondary School Bursary (PSSB), Child Protection Volunteers, and Inua Jamii Cash Transfer for orphans.</p>
+                    <div class="blog-footer">
+                        <span class="blog-author">childrenservices.go.ke</span>
+                        <a href="https://www.childrenservices.go.ke/community-child-support" class="btn-read" target="_blank" rel="noopener noreferrer">Read <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. Buckner Kenya: family strengthening -->
+            <div class="blog-card">
+                <div class="blog-image">
+                    <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22400%22%20height%3D%22200%22%20viewBox%3D%220%200%20400%20200%22%3E%3Crect%20width%3D%22400%22%20height%3D%22200%22%20fill%3D%22%23F4C430%22%2F%3E%3Ctext%20x%3D%2250%22%20y%3D%22120%22%20font-family%3D%22Arial%22%20font-size%3D%2224%22%20fill%3D%22%230B3D91%22%3EBuckner%20Kenya%3C%2Ftext%3E%3C%2Fsvg%3E" alt="Buckner Kenya">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span class="blog-source">Buckner International</span>
+                        <span class="blog-date">2025</span>
+                    </div>
+                    <h3 class="blog-title">Strengthening Families in Kenya</h3>
+                    <p class="blog-summary">Foster care and adoption services in Nairobi, Busia, and Kitale. Family Hope Centers provide financial empowerment, education, medical clinics, and water wells to support vulnerable children and families.</p>
+                    <div class="blog-footer">
+                        <span class="blog-author">Buckner Kenya</span>
+                        <a href="http://www.buckner.org/international/kenya/" class="btn-read" target="_blank" rel="noopener noreferrer">Read <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7. Academic: child-first framework (second source) -->
+            <div class="blog-card">
+                <div class="blog-image">
+                    <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22400%22%20height%3D%22200%22%20viewBox%3D%220%200%20400%20200%22%3E%3Crect%20width%3D%22400%22%20height%3D%22200%22%20fill%3D%22%234DA6FF%22%2F%3E%3Ctext%20x%3D%2250%22%20y%3D%22120%22%20font-family%3D%22Arial%22%20font-size%3D%2224%22%20fill%3D%22%23FFFFFF%22%3EResearch%20%232%3C%2Ftext%3E%3C%2Fsvg%3E" alt="Research">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span class="blog-source">OUCI / MDPI</span>
+                        <span class="blog-date">2024</span>
+                    </div>
+                    <h3 class="blog-title">Re-Designing Secure Children’s Homes (Full Text)</h3>
+                    <p class="blog-summary">Full academic article with thematic analysis: children's homes must prioritize family involvement, homely environment, and adaptability. Findings feeding into design of new homes in England.</p>
+                    <div class="blog-footer">
+                        <span class="blog-author">Andow et al.</span>
+                        <a href="https://ouci.dntb.gov.ua/en/works/45ZOgKql/" class="btn-read" target="_blank" rel="noopener noreferrer">Read <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 8. Early childhood teaching framework -->
+            <div class="blog-card">
+                <div class="blog-image">
+                    <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22400%22%20height%3D%22200%22%20viewBox%3D%220%200%20400%20200%22%3E%3Crect%20width%3D%22400%22%20height%3D%22200%22%20fill%3D%22%23c2d9ff%22%2F%3E%3Ctext%20x%3D%2230%22%20y%3D%22120%22%20font-family%3D%22Arial%22%20font-size%3D%2220%22%20fill%3D%22%230B3D91%22%3EHeadStart%20Framework%3C%2Ftext%3E%3C%2Fsvg%3E" alt="Teaching framework">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span class="blog-source">HeadStart.gov</span>
+                        <span class="blog-date">2025</span>
+                    </div>
+                    <h3 class="blog-title">Framework for Effective Practice in Early Childhood</h3>
+                    <p class="blog-summary">Five elements: nurturing interactions, research-based curriculum, ongoing assessment, individualized teaching, and family engagement. Useful for children's home education programs.</p>
+                    <div class="blog-footer">
+                        <span class="blog-author">National Center on ECD</span>
+                        <a href="https://www.headstart.gov/teaching-practices/article/framework-effective-practice" class="btn-read" target="_blank" rel="noopener noreferrer">Read <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- newsletter signup -->
+        <section class="newsletter-section">
+            <h2><i class="fas fa-envelope-open-text"></i> Stay Updated</h2>
+            <p>Get the latest articles and news delivered to your inbox.</p>
+            <form class="newsletter-form" id="newsletterForm">
+                <input type="email" placeholder="Your email address" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4 style="color:var(--soft-gold);">Happiness Home</h4>
+                <p>Nyamiobo, Gucha, Kisii, Kenya</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick links</h4>
+                <p><a href="#">About</a></p>
+                <p><a href="#">Sponsor</a></p>
+                <p><a href="#">Donate</a></p>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <p><i class="fas fa-phone"></i> 0705 917289</p>
+                <p><i class="fas fa-phone"></i> 0700 769001</p>
+                <p><i class="fas fa-envelope"></i> nyandikokwambokaesther@gmail.com</p>
+            </div>
+            <div class="footer-col">
+                <h4>Follow</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright" style="text-align: center; padding-top: 2rem; color: #a0b9e0; font-size: 0.9rem;">
+    <p>
+        © <span id="currentYear"></span> Happiness Children's Home. All rights reserved. 
+        Developed with ❤️ by <a href="https://www.worldwaysweb-developers.co.ke/" target="_blank" rel="noopener noreferrer" style="color: #F4C430; text-decoration: none;">Worldways Web Developers</a>.
+    </p>
+</div>
+
+<script>
+    // Update copyright year automatically
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+</script>
+    </footer>
+
+    <script>
+        (function() {
+            // Hamburger menu
+            const hamburger = document.getElementById('hamburgerBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            hamburger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                mobileMenu.classList.toggle('hide');
+                hamburger.querySelector('i').classList.toggle('fa-bars');
+                hamburger.querySelector('i').classList.toggle('fa-times');
+            });
+            document.addEventListener('click', (e) => {
+                if (!mobileMenu.contains(e.target) && !hamburger.contains(e.target) && !mobileMenu.classList.contains('hide')) {
+                    mobileMenu.classList.add('hide');
+                    hamburger.querySelector('i').classList.remove('fa-times');
+                    hamburger.querySelector('i').classList.add('fa-bars');
+                }
+            });
+
+            // Newsletter form
+            const newsletterForm = document.getElementById('newsletterForm');
+            newsletterForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('Thank you for subscribing to our blog updates!');
+                newsletterForm.reset();
+            });
+
+            // Filter tabs (visual only)
+            const filterTabs = document.querySelectorAll('.filter-tab');
+            filterTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    filterTabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    // In a real implementation, you'd filter the blog posts here
+                });
+            });
+        })();
+    </script>
+</body>
+</html>

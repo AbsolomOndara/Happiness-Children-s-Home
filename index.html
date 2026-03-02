@@ -601,6 +601,20 @@
                 display: flex;
             }
         }
+         .logo a {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--white);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .logo i {
+            color: var(--soft-gold);
+            font-size: 2rem;
+        }
     </style>
 </head>
 <body>
@@ -608,7 +622,7 @@
     <nav class="floating-nav">
         <div class="nav-container">
             <div class="logo">
-                <img src="images/logo.png" alt="Happiness Children's Home Logo" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22120%22%20height%3D%2250%22%20viewBox%3D%220%200%20120%2050%22%3E%3Crect%20width%3D%22120%22%20height%3D%2250%22%20fill%3D%22%230B3D91%22%2F%3E%3Ctext%20x%3D%2210%22%20y%3D%2232%22%20font-family%3D%22Arial%22%20font-size%3D%2218%22%20fill%3D%22%23F4C430%22%3ELogo%3C%2Ftext%3E%3C%2Fsvg%3E';">
+                  <a href="#"><i class="fas fa-child"></i> Happiness Home</a>
             </div>
             <!-- desktop menu -->
             <ul class="nav-menu" id="navMenu">
@@ -630,8 +644,6 @@
 
     <!-- mobile menu (image + navigation buttons) -->
     <div id="mobileMenu" class="mobile-menu hide">
-        <img src="images/hom.png" alt="Mobile menu" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22400%22%20height%3D%22300%22%20viewBox%3D%220%200%20400%20300%22%3E%3Crect%20width%3D%22400%22%20height%3D%22300%22%20fill%3D%22%230B3D91%22%2F%3E%3Ctext%20x%3D%2250%22%20y%3D%22150%22%20font-family%3D%22Arial%22%20font-size%3D%2224%22%20fill%3D%22%23F4C430%22%3EMobile%20Menu%3C%2Ftext%3E%3Ctext%20x%3D%2250%22%20y%3D%22200%22%20font-family%3D%22Arial%22%20font-size%3D%2220%22%20fill%3D%22%23FFFFFF%22%3EPlace%20hom.png%20here%3C%2Ftext%3E%3C%2Fsvg%3E';">
-        
         <ul class="mobile-nav-links">
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About</a></li>
@@ -939,12 +951,12 @@
     // ---------- CHILDREN DATA ----------
     // Replace with your actual children data. Images should be in "images/" folder.
     const children = [
-      { name: 'Akinyi', age: 9, image: 'images/child1.png', dream: 'Dreams to be a teacher' },
-      { name: 'Brian', age: 13, image: 'images/child2.png', dream: 'Football talent' },
-      { name: 'Faith', age: 6, image: 'images/child3.png', dream: 'Little artist' },
-      { name: 'James', age: 10, image: 'images/child4.png', dream: 'Loves science' },
-      { name: 'Mary', age: 8, image: 'images/child5.png', dream: 'Wants to be a nurse' },
-      { name: 'Samuel', age: 12, image: 'images/child6.png', dream: 'Enjoys reading' }
+      { name: 'Akinyi', age: 9, image: 'images/m1.jpg', dream: 'Dreams to be a teacher' },
+      { name: 'Mellab', age: 7, image: 'images/m2.jpg', dream: 'Loves Science' },
+      { name: 'Faith', age: 10, image: 'images/m3.jpg', dream: 'Little artist' },
+      { name: 'Mary', age: 9, image: 'images/m4.jpg', dream: 'Loves science' },
+      { name: 'Miriam', age: 11, image: 'images/m5.jpg', dream: 'Wants to be a nurse' },
+      { name: 'Samuel', age: 3, image: 'images/m6.jpg', dream: 'Enjoys singing' }
       // add more as needed
     ];
 
@@ -1096,7 +1108,18 @@
             <div class="footer-col"><h4>Contact</h4><p><i class="fas fa-phone"></i> 0705 917289</p></div>
             <div class="footer-col"><h4>Follow</h4><div class="social-icons"><a href="#"><i class="fab fa-facebook"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-instagram"></i></a></div></div>
         </div>
-        <div class="copyright">© 2025 Happiness Children's Home</div>
+        <!-- Copyright section with auto-updating year and developer credit -->
+<div class="copyright" style="text-align: center; padding-top: 2rem; color: #a0b9e0; font-size: 0.9rem;">
+    <p>
+        © <span id="currentYear"></span> Happiness Children's Home. All rights reserved. 
+        Developed with ❤️ by <a href="https://www.worldwaysweb-developers.co.ke/" target="_blank" rel="noopener noreferrer" style="color: #F4C430; text-decoration: none;">Worldways Web Developers</a>.
+    </p>
+</div>
+
+<script>
+    // Update copyright year automatically
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+</script>
     </footer>
 
     <script>

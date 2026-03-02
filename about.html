@@ -929,7 +929,17 @@
                 </div>
             </div>
         </div>
-        <div class="copyright">© 2025 Happiness Children's Home. All rights reserved.</div>
+        <div class="copyright" style="text-align: center; padding-top: 2rem; color: #a0b9e0; font-size: 0.9rem;">
+    <p>
+        © <span id="currentYear"></span> Happiness Children's Home. All rights reserved. 
+        Developed with ❤️ by <a href="https://www.worldwaysweb-developers.co.ke/" target="_blank" rel="noopener noreferrer" style="color: #F4C430; text-decoration: none;">Worldways Web Developers</a>.
+    </p>
+</div>
+
+<script>
+    // Update copyright year automatically
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+</script>
     </footer>
 
     <script>

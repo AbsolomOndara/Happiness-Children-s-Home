@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Sponsor a Child - Happiness Children's Home</title>
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #152b42;
+            line-height: 1.5;
+            padding: 0 15px;
+        }
+
+        :root {
+            --dark-blue: #0B3D91;
+            --white: #FFFFFF;
+            --soft-gold: #F4C430;
+            --light-sky: #4DA6FF;
+            --light-bg: #F5F7FA;
+            --shadow: 0 20px 35px -8px rgba(0, 30, 60, 0.15);
+            --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+        }
+
+        /* floating navigation */
+        .floating-nav {
+            position: sticky;
+            top: 15px;
+            z-index: 1000;
+            background-color: var(--dark-blue);
+            box-shadow: 0 4px 16px rgba(0, 20, 40, 0.25);
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto 20px;
+            border-radius: 60px;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.6rem 1.5rem;
+        }
+
+        .logo a {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--white);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .logo i {
+            color: var(--soft-gold);
+            font-size: 2rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 1.8rem;
+            list-style: none;
+        }
+
+        .nav-menu li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: 0.2s;
+            padding-bottom: 0.25rem;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav-menu li a:hover,
+        .nav-menu li a.active {
+            border-bottom-color: var(--soft-gold);
+            color: var(--soft-gold);
+        }
+
+        .donate-btn-nav {
+            background-color: var(--soft-gold);
+            color: var(--dark-blue) !important;
+            padding: 0.5rem 1.8rem !important;
+            border-radius: 40px;
+            font-weight: 600;
+            border-bottom: none !important;
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 2rem;
+            color: white;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* mobile menu */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 85px;
+            left: 15px;
+            right: 15px;
+            background: var(--light-bg);
+            border-radius: 30px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            z-index: 999;
+            border: 2px solid var(--soft-gold);
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .mobile-menu:not(.hide) {
+            display: block;
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+        }
+
+        .mobile-nav-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .mobile-nav-links li a {
+            display: block;
+            padding: 0.8rem 1rem;
+            background: white;
+            color: var(--dark-blue);
+            text-decoration: none;
+            font-weight: 500;
+            border-radius: 40px;
+            text-align: center;
+            border: 1px solid #e0e7f0;
+        }
+
+        .mobile-nav-links .donate-btn-mobile {
+            background: var(--soft-gold);
+            font-weight: 700;
+            border: none;
+        }
+
+        /* floating whatsapp */
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            z-index: 999;
+            text-decoration: none;
+        }
+
+        /* page header */
+        .page-header {
+            text-align: center;
+            margin: 3rem 0 2rem;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            color: var(--dark-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .page-header p {
+            color: #2d3e5f;
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* section titles */
+        .section-title {
+            font-size: 2.2rem;
+            color: var(--dark-blue);
+            margin: 4rem 0 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .section-title i {
+            color: var(--soft-gold);
+        }
+
+        /* meet the children - profile cards */
+        .children-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .child-card {
+            background: white;
+            border-radius: 40px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #edf2f9;
+        }
+
+        .child-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 30px -8px rgba(11,61,145,0.2);
+        }
+
+        .child-image {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
+            background: #c2d9ff;
+        }
+
+        .child-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s;
+        }
+
+        .child-card:hover .child-image img {
+            transform: scale(1.05);
+        }
+
+        .child-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .child-info h3 {
+            font-size: 1.5rem;
+            color: var(--dark-blue);
+            margin-bottom: 0.3rem;
+        }
+
+        .child-info .age {
+            color: var(--soft-gold);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .child-info .dream {
+            color: #4a5f79;
+            margin-bottom: 1rem;
+        }
+
+        .btn-sponsor {
+            display: inline-block;
+            background: var(--soft-gold);
+            color: var(--dark-blue);
+            padding: 0.6rem 1.5rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .btn-sponsor:hover {
+            background: #e6b220;
+            transform: scale(1.02);
+        }
+
+        /* sponsorship options */
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .option-card {
+            background: white;
+            border-radius: 40px;
+            padding: 2.5rem;
+            box-shadow: var(--card-shadow);
+            border: 2px solid transparent;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .option-card.popular {
+            border-color: var(--soft-gold);
+            background: #fffbf0;
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: 1.5rem;
+            right: -2rem;
+            background: var(--soft-gold);
+            color: var(--dark-blue);
+            padding: 0.5rem 3rem;
+            transform: rotate(45deg);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .option-card h3 {
+            font-size: 2rem;
+            color: var(--dark-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .option-card .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--soft-gold);
+            margin-bottom: 1rem;
+        }
+
+        .option-card .period {
+            color: #64748b;
+            margin-bottom: 1.5rem;
+        }
+
+        .option-card ul {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .option-card li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .option-card li i {
+            color: var(--soft-gold);
+        }
+
+        .btn-option {
+            display: block;
+            background: var(--dark-blue);
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            border-radius: 60px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .btn-option:hover {
+            background: #0f4bb8;
+        }
+
+        /* how it works */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .step {
+            text-align: center;
+        }
+
+        .step-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--light-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: var(--dark-blue);
+            border: 2px dashed var(--soft-gold);
+        }
+
+        .step h4 {
+            font-size: 1.3rem;
+            color: var(--dark-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        /* success stories */
+        .stories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .story-card {
+            background: white;
+            border-radius: 40px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+
+        .story-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .story-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .story-content {
+            padding: 1.5rem;
+        }
+
+        .story-content h4 {
+            font-size: 1.3rem;
+            color: var(--dark-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .story-content .quote {
+            color: #4a5f79;
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+
+        .story-content .author {
+            font-weight: 600;
+            color: var(--soft-gold);
+        }
+
+        /* FAQ accordion */
+        .faq-container {
+            max-width: 800px;
+            margin: 2rem auto;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 30px;
+            margin-bottom: 1rem;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            background: var(--light-bg);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--dark-blue);
+        }
+
+        .faq-question i {
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            padding: 0 1.5rem;
+            background: white;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            padding: 1.5rem;
+        }
+
+        /* secure sponsor form */
+        .form-section {
+            background: var(--dark-blue);
+            color: white;
+            border-radius: 60px;
+            padding: 3rem;
+            margin: 4rem 0;
+        }
+
+        .form-title {
+            font-size: 2rem;
+            color: var(--soft-gold);
+            margin-bottom: 1rem;
+        }
+
+        .sponsor-form {
+            display: grid;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: var(--soft-gold);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 1rem;
+            border-radius: 40px;
+            border: none;
+            font-family: 'Inter', sans-serif;
+            background: white;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: 2px solid var(--soft-gold);
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .checkbox-group input {
+            width: 20px;
+            height: 20px;
+        }
+
+        .btn-submit {
+            background: var(--soft-gold);
+            color: var(--dark-blue);
+            padding: 1.2rem;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-top: 1rem;
+        }
+
+        .btn-submit:hover {
+            background: #e6b220;
+            transform: scale(1.02);
+        }
+
+        /* footer */
+        footer {
+            background: var(--dark-blue);
+            color: white;
+            margin-top: 5rem;
+            padding: 3rem 2rem 1.5rem;
+            border-radius: 60px 60px 0 0;
+        }
+
+        .footer-grid {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .footer-col p, .footer-col a {
+            color: #deeaff;
+            text-decoration: none;
+            line-height: 2;
+        }
+
+        .footer-col i {
+            margin-right: 0.7rem;
+            color: var(--soft-gold);
+        }
+
+        .social-icons a {
+            font-size: 2rem;
+            margin-right: 1rem;
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2.5rem;
+            color: #a0b9e0;
+        }
+
+        /* responsive */
+        @media screen and (max-width: 900px) {
+            .nav-menu {
+                display: none;
+            }
+            .hamburger {
+                display: block;
+            }
+            .floating-nav {
+                top: 10px;
+                border-radius: 40px;
+            }
+            .page-header h1 {
+                font-size: 2.4rem;
+            }
+            .form-section {
+                padding: 1.5rem;
+            }
+            .popular-badge {
+                right: -1.5rem;
+                padding: 0.4rem 2rem;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            .step-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- floating navigation -->
+    <nav class="floating-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="#"><i class="fas fa-child"></i> Happiness Home</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="programs.html">Programs</a></li>
+            <li><a href="sponsor.html">Sponsor</a></li>
+            <li><a href="donate.html">Donate</a></li>
+            <li><a href="volunteer.html">Volunteer</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="donate.html" class="donate-btn-mobile"><i class="fas fa-heart"></i> Donate Now</a></li>
+            </ul>
+            <button class="hamburger" id="hamburgerBtn"><i class="fas fa-bars"></i></button>
+        </div>
+    </nav>
+
+    <!-- mobile menu -->
+    <div id="mobileMenu" class="mobile-menu hide">
+        <ul class="mobile-nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="programs.html">Programs</a></li>
+            <li><a href="sponsor.html">Sponsor</a></li>
+            <li><a href="donate.html">Donate</a></li>
+            <li><a href="volunteer.html">Volunteer</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="donate.html" class="donate-btn-mobile"><i class="fas fa-heart"></i> Donate Now</a></li>
+        </ul>
+    </div>
+
+    <!-- floating whatsapp -->
+    <a href="https://wa.me/254705917289" class="floating-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i></a>
+
+    <main>
+        <div class="page-header">
+            <h1>Sponsor a Child</h1>
+            <p>Change a life forever – become a sponsor today</p>
+        </div>
+
+        <!-- Meet Our Children -->
+        <section>
+            <h2 class="section-title"><i class="fas fa-child"></i> Meet Our Children</h2>
+            <div class="children-grid">
+                <!-- child 1 -->
+                <div class="child-card">
+                    <div class="child-image">
+                        <img src="images/child1.png" alt="Akinyi" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22400%22%20height%3D%22400%22%20viewBox%3D%220%200%20400%20400%22%3E%3Crect%20width%3D%22400%22%20height%3D%22400%22%20fill%3D%22%23c2d9ff%22%2F%3E%3Ctext%20x%3D%22120%22%20y%3D%22200%22%20font-family%3D%22Arial%22%20font-size%3D%2240%22%20fill%3D%22%230B3D91%22%3EAkinyi%3C%2Ftext%3E%3C%2Fsvg%3E';">
+                    </div>
+                    <div class="child-info">
+                        <h3>Akinyi</h3>
+                        <div class="age">9 years old</div>
+                        <div class="dream">Dreams to be a teacher</div>
+                        <a href="#" class="btn-sponsor">Sponsor Akinyi</a>
+                    </div>
+                </div>
+                <!-- child 2 -->
+                <div class="child-card">
+                    <div class="child-image">
+                        <img src="images/child2.png" alt="Brian" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22400%22%20height%3D%22400%22%20viewBox%3D%220%200%20400%20400%22%3E%3Crect%20width%3D%22400%22%20height%3D%22400%22%20fill%3D%22%23c2d9ff%22%2F%3E%3Ctext%20x%3D%22120%22%20y%3D%22200%22%20font-family%3D%22Arial%22%20font-size%3D%2240%22%20fill%3D%22%230B3D91%22%3EBrian%3C%2Ftext%3E%3C%2Fsvg%3E';">
+                    </div>
+                    <div class="child-info">
+                        <h3>Brian</h3>
+                        <div class="age">13 years old</div>
+                        <div class="dream">Football talent</div>
+                        <a href="#" class="btn-sponsor">Sponsor Brian</a>
+                    </div>
+                </div>
+                <!-- child 3 -->
+                <div class="child-card">
+                    <div class="child-image">
+                        <img src="images/child3.png" alt="Faith" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22400%22%20height%3D%22400%22%20viewBox%3D%220%200%20400%20400%22%3E%3Crect%20width%3D%22400%22%20height%3D%22400%22%20fill%3D%22%23c2d9ff%22%2F%3E%3Ctext%20x%3D%22120%22%20y%3D%22200%22%20font-family%3D%22Arial%22%20font-size%3D%2240%22%20fill%3D%22%230B3D91%22%3EFaith%3C%2Ftext%3E%3C%2Fsvg%3E';">
+                    </div>
+                    <div class="child-info">
+                        <h3>Faith</h3>
+                        <div class="age">6 years old</div>
+                        <div class="dream">Little artist</div>
+                        <a href="#" class="btn-sponsor">Sponsor Faith</a>
+                    </div>
+                </div>
+                <!-- child 4 -->
+                <div class="child-card">
+                    <div class="child-image">
+                        <img src="images/child4.png" alt="James" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22400%22%20height%3D%22400%22%20viewBox%3D%220%200%20400%20400%22%3E%3Crect%20width%3D%22400%22%20height%3D%22400%22%20fill%3D%22%23c2d9ff%22%2F%3E%3Ctext%20x%3D%22100%22%20y%3D%22200%22%20font-family%3D%22Arial%22%20font-size%3D%2240%22%20fill%3D%22%230B3D91%22%3EJames%3C%2Ftext%3E%3C%2Fsvg%3E';">
+                    </div>
+                    <div class="child-info">
+                        <h3>James</h3>
+                        <div class="age">10 years old</div>
+                        <div class="dream">Loves science</div>
+                        <a href="#" class="btn-sponsor">Sponsor James</a>
+                    </div>
+                </div>
+            </div>
+            <p style="text-align:center; margin-top:1rem;"><a href="#" class="btn-sponsor" style="background:var(--dark-blue); color:white;">View All Children</a></p>
+        </section>
+
+        <!-- Sponsorship Options -->
+        <section>
+            <h2 class="section-title"><i class="fas fa-hand-holding-heart"></i> Sponsorship Options</h2>
+            <div class="options-grid">
+                <!-- Monthly -->
+                <div class="option-card">
+                    <h3>Monthly</h3>
+                    <div class="price">KSh 3,000</div>
+                    <div class="period">per month</div>
+                    <ul>
+                        <li><i class="fas fa-check"></i> School fees & supplies</li>
+                        <li><i class="fas fa-check"></i> Nutritious meals</li>
+                        <li><i class="fas fa-check"></i> Medical care</li>
+                        <li><i class="fas fa-check"></i> Emotional support</li>
+                        <li><i class="fas fa-check"></i> Progress updates</li>
+                    </ul>
+                    <a href="#" class="btn-option">Choose Monthly</a>
+                </div>
+
+                <!-- Annual (popular) -->
+                <div class="option-card popular">
+                    <div class="popular-badge">Best Value</div>
+                    <h3>Annual</h3>
+                    <div class="price">KSh 30,000</div>
+                    <div class="period">per year (save 2 months)</div>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Everything in monthly</li>
+                        <li><i class="fas fa-check"></i> Birthday & holiday gifts</li>
+                        <li><i class="fas fa-check"></i> Sponsor visit opportunity</li>
+                        <li><i class="fas fa-check"></i> Certificate of sponsorship</li>
+                        <li><i class="fas fa-check"></i> Annual report & photos</li>
+                    </ul>
+                    <a href="#" class="btn-option">Choose Annual</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- How Sponsorship Works -->
+        <section>
+            <h2 class="section-title"><i class="fas fa-question-circle"></i> How It Works</h2>
+            <div class="steps-grid">
+                <div class="step">
+                    <div class="step-icon"><i class="fas fa-user-plus"></i></div>
+                    <h4>1. Choose a child</h4>
+                    <p>Browse our children and select the one you'd like to sponsor.</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon"><i class="fas fa-calendar-check"></i></div>
+                    <h4>2. Select plan</h4>
+                    <p>Choose monthly or annual sponsorship.</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon"><i class="fas fa-credit-card"></i></div>
+                    <h4>3. Complete payment</h4>
+                    <p>Use M-Pesa, bank transfer, or card to pay.</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon"><i class="fas fa-heart"></i></div>
+                    <h4>4. Change a life</h4>
+                    <p>Receive updates and build a relationship with your sponsored child.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Success Stories -->
+        <section>
+            <h2 class="section-title"><i class="fas fa-star"></i> Success Stories</h2>
+            <div class="stories-grid">
+                <div class="story-card">
+                    <div class="story-image">
+                        <img src="images/success1.jpg" alt="Success story" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22400%22%20height%3D%22300%22%20viewBox%3D%220%200%20400%20300%22%3E%3Crect%20width%3D%22400%22%20height%3D%22300%22%20fill%3D%22%23c2d9ff%22%2F%3E%3Ctext%20x%3D%2250%22%20y%3D%22150%22%20font-family%3D%22Arial%22%20font-size%3D%2220%22%20fill%3D%22%230B3D91%22%3EMary%27s%20Story%3C%2Ftext%3E%3C%2Fsvg%3E';">
+                    </div>
+                    <div class="story-content">
+                        <h4>Mary, now in university</h4>
+                        <div class="quote">"Sponsorship gave me hope. Today I'm studying to be a nurse."</div>
+                        <div class="author">- Mary, sponsored for 8 years</div>
+                    </div>
+                </div>
+                <div class="story-card">
+                    <div class="story-image">
+                        <img src="images/success2.jpg" alt="Success story" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22400%22%20height%3D%22300%22%20viewBox%3D%220%200%20400%20300%22%3E%3Crect%20width%3D%22400%22%20height%3D%22300%22%20fill%3D%22%23c2d9ff%22%2F%3E%3Ctext%20x%3D%2250%22%20y%3D%22150%22%20font-family%3D%22Arial%22%20font-size%3D%2220%22%20fill%3D%22%230B3D91%22%3EJohn%27s%20Dream%3C%2Ftext%3E%3C%2Fsvg%3E';">
+                    </div>
+                    <div class="story-content">
+                        <h4>John, talented footballer</h4>
+                        <div class="quote">"I was scouted to a junior team thanks to sponsorship support."</div>
+                        <div class="author">- John, age 15</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section>
+            <h2 class="section-title"><i class="fas fa-question"></i> Frequently Asked Questions</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How do I choose a child to sponsor?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        You can browse our "Meet Our Children" section and click "Sponsor" on any child's profile. If you need assistance, contact us and we'll help.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Can I write to my sponsored child?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Absolutely! We encourage sponsors to exchange letters and photos. You can send them via email or post, and we'll deliver them.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What does the sponsorship fee cover?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        It covers education, uniform, meals, healthcare, and emotional support. A portion goes towards home maintenance and activities.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Can I visit the home?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Yes, sponsors are welcome to visit by appointment. Please contact us to arrange a visit.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Secure Sponsor Form -->
+        <section class="form-section">
+            <h2 class="form-title"><i class="fas fa-lock"></i> Become a Sponsor Today</h2>
+            <p>Fill the form below and we'll contact you with next steps.</p>
+            <form class="sponsor-form" id="sponsorForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Full Name *</label>
+                        <input type="text" placeholder="Your full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email *</label>
+                        <input type="email" placeholder="you@example.com" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Phone Number *</label>
+                        <input type="tel" placeholder="+254 ..." required>
+                    </div>
+                    <div class="form-group">
+                        <label>Country</label>
+                        <input type="text" placeholder="Kenya">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Preferred Child (optional)</label>
+                        <select>
+                            <option value="">Any child</option>
+                            <option value="akinyi">Akinyi (9)</option>
+                            <option value="brian">Brian (13)</option>
+                            <option value="faith">Faith (6)</option>
+                            <option value="james">James (10)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Sponsorship Plan *</label>
+                        <select required>
+                            <option value="">Select plan</option>
+                            <option value="monthly">Monthly (KSh 3,000)</option>
+                            <option value="annual">Annual (KSh 30,000)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Message (optional)</label>
+                    <textarea rows="3" placeholder="Tell us anything you'd like us to know"></textarea>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="terms" required>
+                    <label for="terms">I agree to the terms and conditions and would like to proceed.</label>
+                </div>
+                <button type="submit" class="btn-submit"><i class="fas fa-paper-plane"></i> Submit Sponsorship Request</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4 style="color:var(--soft-gold);">Happiness Home</h4>
+                <p>Nyamiobo, Gucha, Kisii, Kenya</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick links</h4>
+                <p><a href="#">About</a></p>
+                <p><a href="#">Sponsor</a></p>
+                <p><a href="#">Donate</a></p>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <p><i class="fas fa-phone"></i> 0705 917289</p>
+                <p><i class="fas fa-phone"></i> 0700 769001</p>
+                <p><i class="fas fa-envelope"></i> nyandikokwambokaesther@gmail.com</p>
+            </div>
+            <div class="footer-col">
+                <h4>Follow</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright" style="text-align: center; padding-top: 2rem; color: #a0b9e0; font-size: 0.9rem;">
+    <p>
+        © <span id="currentYear"></span> Happiness Children's Home. All rights reserved. 
+        Developed with ❤️ by <a href="https://www.worldwaysweb-developers.co.ke/" target="_blank" rel="noopener noreferrer" style="color: #F4C430; text-decoration: none;">Worldways Web Developers</a>.
+    </p>
+</div>
+
+<script>
+    // Update copyright year automatically
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+</script>
+    </footer>
+
+    <script>
+        (function() {
+            // Hamburger menu
+            const hamburger = document.getElementById('hamburgerBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            hamburger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                mobileMenu.classList.toggle('hide');
+                hamburger.querySelector('i').classList.toggle('fa-bars');
+                hamburger.querySelector('i').classList.toggle('fa-times');
+            });
+            document.addEventListener('click', (e) => {
+                if (!mobileMenu.contains(e.target) && !hamburger.contains(e.target) && !mobileMenu.classList.contains('hide')) {
+                    mobileMenu.classList.add('hide');
+                    hamburger.querySelector('i').classList.remove('fa-times');
+                    hamburger.querySelector('i').classList.add('fa-bars');
+                }
+            });
+
+            // FAQ accordion
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', () => {
+                    item.classList.toggle('active');
+                });
+            });
+
+            // Form submission
+            const form = document.getElementById('sponsorForm');
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('Thank you for your interest in sponsorship! We will contact you within 24 hours.');
+                form.reset();
+            });
+        })();
+    </script>
+</body>
+</html>
