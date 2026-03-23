@@ -549,29 +549,14 @@
 <body>
     <!-- floating navigation (consistent with global style) -->
     <nav class="floating-nav">
-        <div class="nav-container">
-            <div class="logo">
-                <a href="#"><i class="fas fa-child"></i> Happiness Home</a>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="programs.html">Programs</a></li>
-            <li><a href="sponsor.html">Sponsor</a></li>
-            <li><a href="donate.html">Donate</a></li>
-            <li><a href="volunteer.html">Volunteer</a></li>
-            <li><a href="gallery.html">Gallery</a></li>
-            <li><a href="blog.html">Blog</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="donate.html" class="donate-btn-mobile"><i class="fas fa-heart"></i> Donate Now</a></li>
-            </ul>
-            <button class="hamburger" id="hamburgerBtn"><i class="fas fa-bars"></i></button>
+    <div class="nav-container">
+        <div class="logo">
+            <a href="index.html">
+                <img src="images/logo.jpg" alt="Happiness Children's Home Logo">
+                <span class="logo-text-mobile">Happiness Children's Home</span>
+            </a>
         </div>
-    </nav>
-
-    <!-- mobile menu -->
-    <div id="mobileMenu" class="mobile-menu hide">
-        <ul class="mobile-nav-links">
+        <ul class="nav-menu" id="navMenu">
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="programs.html">Programs</a></li>
@@ -581,9 +566,233 @@
             <li><a href="gallery.html">Gallery</a></li>
             <li><a href="blog.html">Blog</a></li>
             <li><a href="contact.html">Contact</a></li>
-            <li><a href="donate.html" class="donate-btn-mobile"><i class="fas fa-heart"></i> Donate Now</a></li>
+            <li><a href="donate.html" class="donate-btn-nav"><i class="fas fa-heart"></i> Donate</a></li>
         </ul>
+        <button class="hamburger" id="hamburgerBtn"><i class="fas fa-bars"></i></button>
     </div>
+</nav>
+
+<!-- Mobile Menu (slide-in) -->
+<div id="mobileMenu" class="mobile-menu hide">
+    <ul class="mobile-nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="programs.html">Programs</a></li>
+        <li><a href="sponsor.html">Sponsor</a></li>
+        <li><a href="donate.html">Donate</a></li>
+        <li><a href="volunteer.html">Volunteer</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="donate.html" class="donate-btn-mobile"><i class="fas fa-heart"></i> Donate Now</a></li>
+    </ul>
+</div>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Inter', sans-serif;
+        background-color: #ffffff;
+        color: #152b42;
+        padding: 0 15px;
+    }
+
+    :root {
+        --dark-blue: #0B3D91;
+        --white: #FFFFFF;
+        --soft-gold: #F4C430;
+        --light-bg: #F5F7FA;
+        --shadow: 0 20px 35px -8px rgba(0, 30, 60, 0.15);
+        --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Floating Navigation */
+    .floating-nav {
+        position: sticky;
+        top: 15px;
+        z-index: 1000;
+        background-color: var(--dark-blue);
+        box-shadow: 0 4px 16px rgba(0, 20, 40, 0.25);
+        width: 100%;
+        max-width: 1280px;
+        margin: 0 auto 20px;
+        border-radius: 60px;
+    }
+
+    .nav-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.6rem 1.5rem;
+    }
+
+    .logo a {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+    }
+
+    .logo img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        object-fit: cover;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        display: block;
+    }
+
+    /* Hover pop-up effect for logo */
+    .logo img:hover {
+        transform: scale(1.1);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+    }
+
+    /* Mobile logo text (hidden on desktop) */
+    .logo-text-mobile {
+        display: none;
+        color: var(--white);
+        font-weight: 600;
+        font-size: 1rem;
+        white-space: nowrap;
+    }
+
+    .nav-menu {
+        display: flex;
+        align-items: center;
+        gap: 1.8rem;
+        list-style: none;
+    }
+
+    .nav-menu li a {
+        color: var(--white);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 0.95rem;
+        transition: 0.2s;
+        padding-bottom: 0.25rem;
+        border-bottom: 2px solid transparent;
+    }
+
+    .nav-menu li a:hover,
+    .nav-menu li a.active {
+        border-bottom-color: var(--soft-gold);
+        color: var(--soft-gold);
+    }
+
+    .donate-btn-nav {
+        background-color: var(--soft-gold);
+        color: var(--dark-blue) !important;
+        padding: 0.5rem 1.8rem !important;
+        border-radius: 40px;
+        font-weight: 600;
+        border-bottom: none !important;
+    }
+
+    .hamburger {
+        display: none;
+        font-size: 2rem;
+        color: white;
+        background: none;
+        border: none;
+        cursor: pointer;
+    }
+
+    /* Mobile Menu */
+    .mobile-menu {
+        display: none;
+        position: fixed;
+        top: 85px;
+        left: 15px;
+        right: 15px;
+        background: var(--light-bg);
+        border-radius: 30px;
+        padding: 1.5rem;
+        box-shadow: var(--shadow);
+        z-index: 999;
+        border: 2px solid var(--soft-gold);
+        max-height: 80vh;
+        overflow-y: auto;
+    }
+
+    .mobile-menu:not(.hide) {
+        display: block;
+    }
+
+    .mobile-nav-links {
+        list-style: none;
+    }
+
+    .mobile-nav-links li {
+        margin-bottom: 0.8rem;
+    }
+
+    .mobile-nav-links li a {
+        display: block;
+        padding: 0.8rem 1rem;
+        background: white;
+        color: var(--dark-blue);
+        text-decoration: none;
+        font-weight: 500;
+        border-radius: 40px;
+        text-align: center;
+        border: 1px solid #e0e7f0;
+    }
+
+    .mobile-nav-links .donate-btn-mobile {
+        background: var(--soft-gold);
+        font-weight: 700;
+        border: none;
+    }
+
+    /* Responsive */
+    @media screen and (max-width: 900px) {
+        .nav-menu {
+            display: none;
+        }
+        .hamburger {
+            display: block;
+        }
+        .floating-nav {
+            top: 10px;
+            border-radius: 40px;
+        }
+        .logo img {
+            width: 45px;
+            height: 45px;
+        }
+        /* Show the text on mobile */
+        .logo-text-mobile {
+            display: inline-block;
+            font-size: 0.95rem;
+        }
+    }
+
+    @media screen and (max-width: 600px) {
+        .logo img {
+            width: 40px;
+            height: 40px;
+        }
+        .logo-text-mobile {
+            font-size: 0.85rem;
+            white-space: normal;
+            max-width: 180px;
+        }
+        .nav-container {
+            padding: 0.5rem 1rem;
+        }
+    }
+</style>
+
+<script>
+   
+</script>
 
     <main>
         <div class="page-header">
