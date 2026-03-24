@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <!-- Favicon -->
-<link rel="icon" type="image/jpeg" href="images/logo.jpg">
+    <link rel="icon" type="image/jpeg" href="images/logo.jpg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>About Us - Happiness Children's Home</title>
@@ -31,13 +31,12 @@
             --dark-blue: #0B3D91;
             --white: #FFFFFF;
             --soft-gold: #F4C430;
-            --light-sky: #4DA6FF;
             --light-bg: #F5F7FA;
             --shadow: 0 20px 35px -8px rgba(0, 30, 60, 0.15);
             --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
         }
 
-        /* floating navigation */
+        /* Navigation (same as final contact page) */
         .floating-nav {
             position: sticky;
             top: 15px;
@@ -58,18 +57,31 @@
         }
 
         .logo a {
-            font-weight: 700;
-            font-size: 1.5rem;
-            color: var(--white);
-            text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 0.4rem;
+            gap: 10px;
+            text-decoration: none;
         }
 
-        .logo i {
-            color: var(--soft-gold);
-            font-size: 2rem;
+        .logo img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .logo img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo-text-mobile {
+            display: none;
+            color: var(--white);
+            font-weight: 600;
+            font-size: 1rem;
+            white-space: nowrap;
         }
 
         .nav-menu {
@@ -113,7 +125,6 @@
             cursor: pointer;
         }
 
-        /* mobile menu */
         .mobile-menu {
             display: none;
             position: fixed;
@@ -160,199 +171,223 @@
             border: none;
         }
 
-        /* page header */
+        @media screen and (max-width: 900px) {
+            .nav-menu {
+                display: none;
+            }
+            .hamburger {
+                display: block;
+            }
+            .floating-nav {
+                top: 10px;
+                border-radius: 40px;
+            }
+            .logo img {
+                width: 45px;
+                height: 45px;
+            }
+            .logo-text-mobile {
+                display: inline-block;
+                font-size: 0.95rem;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            .logo img {
+                width: 40px;
+                height: 40px;
+            }
+            .logo-text-mobile {
+                font-size: 0.85rem;
+                white-space: normal;
+                max-width: 180px;
+            }
+            .nav-container {
+                padding: 0.5rem 1rem;
+            }
+        }
+
+        /* Main container - centered, compact */
+        .page-container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
         .page-header {
             text-align: center;
-            margin: 3rem 0 2rem;
+            margin: 1.5rem 0 1rem;
         }
 
         .page-header h1 {
-            font-size: 3rem;
+            font-size: 2rem;
             color: var(--dark-blue);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.2rem;
         }
 
         .page-header p {
             color: #2d3e5f;
-            font-size: 1.2rem;
+            font-size: 0.95rem;
         }
 
-        /* section titles */
+        /* Section titles */
         .section-title {
-            font-size: 2.5rem;
+            font-size: 1.6rem;
             color: var(--dark-blue);
-            margin: 4rem 0 2rem;
+            margin: 2rem 0 1rem;
             display: flex;
             align-items: center;
-            gap: 1rem;
-            flex-wrap: wrap;
+            gap: 0.6rem;
         }
 
         .section-title i {
             color: var(--soft-gold);
-            font-size: 2.5rem;
+            font-size: 1.6rem;
         }
 
         .section-subtitle {
-            font-size: 1.8rem;
+            font-size: 1.3rem;
             color: var(--dark-blue);
-            margin: 2.5rem 0 1.5rem;
+            margin: 1.5rem 0 1rem;
+            border-left: 3px solid var(--soft-gold);
+            padding-left: 0.8rem;
         }
 
-        /* our story */
+        /* Our Story - compact */
         .story-grid {
             display: flex;
             flex-wrap: wrap;
-            gap: 3rem;
+            gap: 2rem;
             background: var(--light-bg);
-            border-radius: 60px;
-            padding: 3rem;
-            margin: 2rem 0;
+            border-radius: 40px;
+            padding: 1.8rem;
+            margin: 1rem 0;
         }
 
         .story-content {
-            flex: 2 1 400px;
+            flex: 2 1 300px;
         }
 
         .story-content h2 {
-            font-size: 2rem;
+            font-size: 1.5rem;
             color: var(--dark-blue);
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
         }
 
         .founder-quote {
             background: white;
-            padding: 2rem;
-            border-radius: 40px;
-            margin-top: 2rem;
-            box-shadow: var(--card-shadow);
-            border-left: 6px solid var(--soft-gold);
-        }
-
-        .founder-quote i {
-            color: var(--soft-gold);
-            font-size: 2rem;
-            margin-right: 1rem;
+            padding: 1.2rem;
+            border-radius: 32px;
+            margin-top: 1rem;
+            border-left: 4px solid var(--soft-gold);
         }
 
         .story-stats {
-            flex: 1 1 250px;
+            flex: 1 1 200px;
             display: flex;
             flex-direction: column;
-            gap: 1.5rem;
+            gap: 1rem;
         }
 
         .stat-bubble {
             background: white;
-            border-radius: 40px;
-            padding: 1.5rem;
+            border-radius: 32px;
+            padding: 1rem;
             text-align: center;
-            box-shadow: var(--card-shadow);
         }
 
         .stat-bubble h3 {
-            font-size: 2.5rem;
+            font-size: 1.8rem;
             color: var(--dark-blue);
         }
 
-        /* mission vision cards */
+        /* Mission & Vision cards */
         .mv-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin: 1rem 0;
         }
 
         .mv-card {
             background: var(--light-bg);
-            padding: 2.5rem;
-            border-radius: 40px;
-            box-shadow: var(--card-shadow);
-            border-bottom: 4px solid var(--soft-gold);
+            padding: 1.5rem;
+            border-radius: 32px;
+            border-bottom: 3px solid var(--soft-gold);
         }
 
         .mv-card h3 {
-            font-size: 1.8rem;
+            font-size: 1.3rem;
             color: var(--dark-blue);
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
         }
 
-        /* core values grid */
+        /* Core values grid */
         .values-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
         }
 
         .value-item {
             background: white;
-            padding: 2rem;
-            border-radius: 40px;
+            padding: 1.2rem;
+            border-radius: 32px;
             text-align: center;
             box-shadow: var(--card-shadow);
-            transition: transform 0.3s;
+            transition: transform 0.2s;
         }
 
         .value-item:hover {
-            transform: translateY(-5px);
+            transform: translateY(-3px);
         }
 
         .value-item i {
-            font-size: 3rem;
+            font-size: 2rem;
             color: var(--dark-blue);
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
         }
 
         .value-item h4 {
-            font-size: 1.4rem;
-            color: var(--dark-blue);
+            font-size: 1.1rem;
         }
 
-        /* timeline */
+        /* Timeline */
         .timeline {
             position: relative;
-            max-width: 1000px;
-            margin: 3rem auto;
+            max-width: 800px;
+            margin: 1.5rem auto;
         }
 
         .timeline::after {
             content: '';
             position: absolute;
-            width: 4px;
+            width: 3px;
             background: var(--soft-gold);
             top: 0;
             bottom: 0;
             left: 50%;
-            margin-left: -2px;
-            border-radius: 2px;
+            margin-left: -1.5px;
         }
 
         .timeline-item {
-            padding: 10px 40px;
+            padding: 5px 30px;
             position: relative;
             width: 50%;
-            box-sizing: border-box;
         }
 
-        .timeline-item:nth-child(odd) {
-            left: 0;
-        }
-
-        .timeline-item:nth-child(even) {
-            left: 50%;
-        }
+        .timeline-item:nth-child(odd) { left: 0; }
+        .timeline-item:nth-child(even) { left: 50%; }
 
         .timeline-content {
-            padding: 20px;
+            padding: 0.8rem 1rem;
             background: white;
-            border-radius: 30px;
+            border-radius: 24px;
             box-shadow: var(--card-shadow);
-            border: 1px solid #edf2f9;
         }
 
         .timeline-content .year {
-            font-size: 1.8rem;
+            font-size: 1.3rem;
             font-weight: 700;
             color: var(--soft-gold);
         }
@@ -360,40 +395,39 @@
         .timeline-item::after {
             content: '';
             position: absolute;
-            width: 20px;
-            height: 20px;
+            width: 14px;
+            height: 14px;
             background: var(--dark-blue);
-            border: 4px solid var(--soft-gold);
+            border: 2px solid var(--soft-gold);
             border-radius: 50%;
-            top: 20px;
-            right: -14px;
+            top: 15px;
+            right: -9px;
             z-index: 1;
         }
 
         .timeline-item:nth-child(even)::after {
-            left: -14px;
+            left: -9px;
         }
 
-        /* team grid (founders, matrons, leaders) */
+        /* Team grid - smaller cards */
         .team-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 2.5rem;
-            margin: 2rem 0;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+            margin: 1rem 0;
         }
 
         .team-card {
             background: white;
-            border-radius: 40px;
+            border-radius: 32px;
             overflow: hidden;
             box-shadow: var(--card-shadow);
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: 0.2s;
             text-align: center;
         }
 
         .team-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 30px -8px rgba(11,61,145,0.2);
+            transform: translateY(-3px);
         }
 
         .team-image {
@@ -406,57 +440,50 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.4s;
-        }
-
-        .team-card:hover .team-image img {
-            transform: scale(1.05);
         }
 
         .team-info {
-            padding: 1.5rem;
+            padding: 1rem;
         }
 
         .team-info h4 {
-            font-size: 1.4rem;
+            font-size: 1.1rem;
             color: var(--dark-blue);
-            margin-bottom: 0.3rem;
         }
 
         .team-info .role {
+            font-size: 0.8rem;
             color: var(--soft-gold);
             font-weight: 600;
-            margin-bottom: 0.5rem;
         }
 
         .team-info p {
+            font-size: 0.85rem;
             color: #4a5f79;
         }
 
-        /* organizational structure (simple tree) */
+        /* Organizational structure */
         .org-chart {
             display: flex;
-            flex-wrap: wrap;
             justify-content: center;
-            gap: 2rem;
-            margin: 3rem 0;
+            gap: 1rem;
+            margin: 1.5rem 0;
         }
 
         .org-level {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 1rem;
+            gap: 0.5rem;
         }
 
         .org-node {
             background: var(--dark-blue);
             color: white;
-            padding: 1rem 2rem;
-            border-radius: 60px;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
             font-weight: 500;
-            box-shadow: var(--card-shadow);
-            min-width: 200px;
             text-align: center;
         }
 
@@ -466,159 +493,158 @@
         }
 
         .org-connector {
-            font-size: 2rem;
+            font-size: 1.2rem;
             color: var(--soft-gold);
         }
 
-        /* legal badges */
+        /* Legal badges */
         .legal-grid {
             display: flex;
             flex-wrap: wrap;
-            gap: 2rem;
+            gap: 1rem;
             justify-content: center;
-            margin: 2rem 0;
+            margin: 1rem 0;
         }
 
         .legal-badge {
             background: white;
-            padding: 2rem;
-            border-radius: 40px;
+            padding: 1rem 1.5rem;
+            border-radius: 32px;
             box-shadow: var(--card-shadow);
             text-align: center;
-            flex: 1 1 200px;
+            flex: 1 1 160px;
         }
 
         .legal-badge i {
-            font-size: 3rem;
+            font-size: 2rem;
             color: var(--dark-blue);
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
         }
 
         .legal-badge h4 {
-            font-size: 1.2rem;
-            color: var(--dark-blue);
+            font-size: 1rem;
         }
 
-        /* why choose us */
+        /* Why choose us grid */
         .why-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.2rem;
+            margin: 1rem 0;
         }
 
         .why-card {
             background: var(--light-bg);
-            padding: 2rem;
-            border-radius: 40px;
-            box-shadow: var(--card-shadow);
-            border-left: 6px solid var(--soft-gold);
+            padding: 1.2rem;
+            border-radius: 32px;
+            border-left: 4px solid var(--soft-gold);
         }
 
         .why-card i {
-            font-size: 2.5rem;
+            font-size: 1.6rem;
             color: var(--dark-blue);
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
         }
 
-        /* footer */
+        /* Footer */
         footer {
             background: var(--dark-blue);
             color: white;
-            margin-top: 5rem;
-            padding: 3rem 2rem 1.5rem;
-            border-radius: 60px 60px 0 0;
+            margin-top: 2rem;
+            padding: 2rem 2rem 1rem;
+            border-radius: 48px 48px 0 0;
         }
 
         .footer-grid {
-            max-width: 1280px;
+            max-width: 1000px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 2.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
         }
 
         .footer-col p, .footer-col a {
             color: #deeaff;
             text-decoration: none;
-            line-height: 2;
+            font-size: 0.85rem;
+            line-height: 1.8;
         }
 
         .footer-col i {
-            margin-right: 0.7rem;
+            margin-right: 0.5rem;
             color: var(--soft-gold);
         }
 
         .social-icons a {
-            font-size: 2rem;
-            margin-right: 1rem;
+            font-size: 1.5rem;
+            margin-right: 0.8rem;
             color: white;
         }
 
         .copyright {
             text-align: center;
-            padding-top: 2.5rem;
+            padding-top: 1.5rem;
+            font-size: 0.75rem;
             color: #a0b9e0;
         }
 
-        /* responsive */
-        @media screen and (max-width: 900px) {
-            .nav-menu {
-                display: none;
-            }
-            .hamburger {
-                display: block;
-            }
-            .floating-nav {
-                top: 10px;
-                border-radius: 40px;
-            }
-            .page-header h1 {
-                font-size: 2.4rem;
-            }
-            .section-title {
-                font-size: 2rem;
-            }
-            .timeline::after {
-                left: 31px;
-            }
+        /* Responsive adjustments */
+        @media screen and (max-width: 800px) {
+            .timeline::after { left: 25px; }
             .timeline-item {
                 width: 100%;
-                padding-left: 70px;
-                padding-right: 25px;
+                padding-left: 50px;
+                padding-right: 15px;
             }
-            .timeline-item:nth-child(even) {
-                left: 0;
-            }
+            .timeline-item:nth-child(even) { left: 0; }
             .timeline-item::after {
                 left: 18px !important;
                 right: auto;
             }
-            .story-grid {
-                padding: 1.5rem;
+            .org-chart {
+                flex-direction: column;
+                align-items: center;
             }
+            .org-connector { transform: rotate(90deg); }
         }
 
         @media screen and (max-width: 600px) {
-            .team-grid {
-                grid-template-columns: 1fr;
-            }
+            .section-title { font-size: 1.4rem; }
+            .story-grid { padding: 1.2rem; }
+            .values-grid { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
 <body>
-    <!-- floating navigation -->
-   <nav class="floating-nav">
-    <div class="nav-container">
-        <div class="logo">
-            <a href="index.html">
-                <img src="images/logo.jpg" alt="Happiness Children's Home Logo">
-                <span class="logo-text-mobile">Happiness Children's Home</span>
-            </a>
+    <!-- Navigation -->
+    <nav class="floating-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/logo.jpg" alt="Happiness Children's Home Logo">
+                    <span class="logo-text-mobile">Happiness Children's Home</span>
+                </a>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="programs.html">Programs</a></li>
+                <li><a href="sponsor.html">Sponsor</a></li>
+                <li><a href="donate.html">Donate</a></li>
+                <li><a href="volunteer.html">Volunteer</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="donate.html" class="donate-btn-nav"><i class="fas fa-heart"></i> Donate</a></li>
+            </ul>
+            <button class="hamburger" id="hamburgerBtn"><i class="fas fa-bars"></i></button>
         </div>
-        <ul class="nav-menu" id="navMenu">
+    </nav>
+
+    <div id="mobileMenu" class="mobile-menu hide">
+        <ul class="mobile-nav-links">
             <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
+            <li><a href="about.html" class="active">About</a></li>
             <li><a href="programs.html">Programs</a></li>
             <li><a href="sponsor.html">Sponsor</a></li>
             <li><a href="donate.html">Donate</a></li>
@@ -626,235 +652,11 @@
             <li><a href="gallery.html">Gallery</a></li>
             <li><a href="blog.html">Blog</a></li>
             <li><a href="contact.html">Contact</a></li>
-            <li><a href="donate.html" class="donate-btn-nav"><i class="fas fa-heart"></i> Donate</a></li>
+            <li><a href="donate.html" class="donate-btn-mobile"><i class="fas fa-heart"></i> Donate Now</a></li>
         </ul>
-        <button class="hamburger" id="hamburgerBtn"><i class="fas fa-bars"></i></button>
     </div>
-</nav>
 
-<!-- Mobile Menu (slide-in) -->
-<div id="mobileMenu" class="mobile-menu hide">
-    <ul class="mobile-nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="programs.html">Programs</a></li>
-        <li><a href="sponsor.html">Sponsor</a></li>
-        <li><a href="donate.html">Donate</a></li>
-        <li><a href="volunteer.html">Volunteer</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="donate.html" class="donate-btn-mobile"><i class="fas fa-heart"></i> Donate Now</a></li>
-    </ul>
-</div>
-
-<style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
-    body {
-        font-family: 'Inter', sans-serif;
-        background-color: #ffffff;
-        color: #152b42;
-        padding: 0 15px;
-    }
-
-    :root {
-        --dark-blue: #0B3D91;
-        --white: #FFFFFF;
-        --soft-gold: #F4C430;
-        --light-bg: #F5F7FA;
-        --shadow: 0 20px 35px -8px rgba(0, 30, 60, 0.15);
-        --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
-    }
-
-    /* Floating Navigation */
-    .floating-nav {
-        position: sticky;
-        top: 15px;
-        z-index: 1000;
-        background-color: var(--dark-blue);
-        box-shadow: 0 4px 16px rgba(0, 20, 40, 0.25);
-        width: 100%;
-        max-width: 1280px;
-        margin: 0 auto 20px;
-        border-radius: 60px;
-    }
-
-    .nav-container {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0.6rem 1.5rem;
-    }
-
-    .logo a {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        text-decoration: none;
-    }
-
-    .logo img {
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        object-fit: cover;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        display: block;
-    }
-
-    /* Hover pop-up effect for logo */
-    .logo img:hover {
-        transform: scale(1.1);
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-        cursor: pointer;
-    }
-
-    /* Mobile logo text (hidden on desktop) */
-    .logo-text-mobile {
-        display: none;
-        color: var(--white);
-        font-weight: 600;
-        font-size: 1rem;
-        white-space: nowrap;
-    }
-
-    .nav-menu {
-        display: flex;
-        align-items: center;
-        gap: 1.8rem;
-        list-style: none;
-    }
-
-    .nav-menu li a {
-        color: var(--white);
-        text-decoration: none;
-        font-weight: 500;
-        font-size: 0.95rem;
-        transition: 0.2s;
-        padding-bottom: 0.25rem;
-        border-bottom: 2px solid transparent;
-    }
-
-    .nav-menu li a:hover,
-    .nav-menu li a.active {
-        border-bottom-color: var(--soft-gold);
-        color: var(--soft-gold);
-    }
-
-    .donate-btn-nav {
-        background-color: var(--soft-gold);
-        color: var(--dark-blue) !important;
-        padding: 0.5rem 1.8rem !important;
-        border-radius: 40px;
-        font-weight: 600;
-        border-bottom: none !important;
-    }
-
-    .hamburger {
-        display: none;
-        font-size: 2rem;
-        color: white;
-        background: none;
-        border: none;
-        cursor: pointer;
-    }
-
-    /* Mobile Menu */
-    .mobile-menu {
-        display: none;
-        position: fixed;
-        top: 85px;
-        left: 15px;
-        right: 15px;
-        background: var(--light-bg);
-        border-radius: 30px;
-        padding: 1.5rem;
-        box-shadow: var(--shadow);
-        z-index: 999;
-        border: 2px solid var(--soft-gold);
-        max-height: 80vh;
-        overflow-y: auto;
-    }
-
-    .mobile-menu:not(.hide) {
-        display: block;
-    }
-
-    .mobile-nav-links {
-        list-style: none;
-    }
-
-    .mobile-nav-links li {
-        margin-bottom: 0.8rem;
-    }
-
-    .mobile-nav-links li a {
-        display: block;
-        padding: 0.8rem 1rem;
-        background: white;
-        color: var(--dark-blue);
-        text-decoration: none;
-        font-weight: 500;
-        border-radius: 40px;
-        text-align: center;
-        border: 1px solid #e0e7f0;
-    }
-
-    .mobile-nav-links .donate-btn-mobile {
-        background: var(--soft-gold);
-        font-weight: 700;
-        border: none;
-    }
-
-    /* Responsive */
-    @media screen and (max-width: 900px) {
-        .nav-menu {
-            display: none;
-        }
-        .hamburger {
-            display: block;
-        }
-        .floating-nav {
-            top: 10px;
-            border-radius: 40px;
-        }
-        .logo img {
-            width: 45px;
-            height: 45px;
-        }
-        /* Show the text on mobile */
-        .logo-text-mobile {
-            display: inline-block;
-            font-size: 0.95rem;
-        }
-    }
-
-    @media screen and (max-width: 600px) {
-        .logo img {
-            width: 40px;
-            height: 40px;
-        }
-        .logo-text-mobile {
-            font-size: 0.85rem;
-            white-space: normal;
-            max-width: 180px;
-        }
-        .nav-container {
-            padding: 0.5rem 1rem;
-        }
-    }
-</style>
-
-<script>
-   
-</script>
-
-    <main>
+    <div class="page-container">
         <div class="page-header">
             <h1>About Happiness Children's Home</h1>
             <p>A family where love and hope transform lives</p>
@@ -870,8 +672,8 @@
                     <p>Today, we are a registered children's home, touching over 200 lives annually and expanding our programs to include skills training and community outreach.</p>
                     <div class="founder-quote">
                         <i class="fas fa-quote-left"></i>
-                        <p style="display:inline; font-size:1.2rem;">We believe every child deserves a loving family. That's why we are here – to be that family.</p>
-                        <p style="margin-top:1rem;"><strong>— Philes Kerubo & Esther Kwamboka, Founders</strong></p>
+                        <p style="display:inline; font-weight:500;">We believe every child deserves a loving family. That's why we are here – to be that family.</p>
+                        <p style="margin-top:0.5rem;"><strong>— Philes Kerubo & Esther Kwamboka, Founders</strong></p>
                     </div>
                 </div>
                 <div class="story-stats">
@@ -923,42 +725,12 @@
         <section>
             <h2 class="section-title"><i class="fas fa-timeline"></i> Our History</h2>
             <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <span class="year">2013</span>
-                        <p>Founded by Philes Kerubo and Esther Kwamboka with 5 children in a small rented house in Nyamiobo.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <span class="year">2015</span>
-                        <p>Moved to our own facility, thanks to donor support. Capacity increased to 20 children.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <span class="year">2018</span>
-                        <p>Registered as a children's home by the Department of Social Services.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <span class="year">2021</span>
-                        <p>Launched education sponsorship program; 30 children enrolled in local schools.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <span class="year">2024</span>
-                        <p>Expanded to include a talent development center and a small farm for nutrition.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <span class="year">2025</span>
-                        <p>Celebrating 12 years of service with 47 children under our care.</p>
-                    </div>
-                </div>
+                <div class="timeline-item"><div class="timeline-content"><span class="year">2013</span><p>Founded with 5 children in a rented house in Nyamiobo.</p></div></div>
+                <div class="timeline-item"><div class="timeline-content"><span class="year">2015</span><p>Moved to own facility, capacity grew to 20 children.</p></div></div>
+                <div class="timeline-item"><div class="timeline-content"><span class="year">2018</span><p>Registered by the Department of Social Services.</p></div></div>
+                <div class="timeline-item"><div class="timeline-content"><span class="year">2021</span><p>Launched education sponsorship; 30 children in school.</p></div></div>
+                <div class="timeline-item"><div class="timeline-content"><span class="year">2024</span><p>Added talent center and farm for nutrition.</p></div></div>
+                <div class="timeline-item"><div class="timeline-content"><span class="year">2025</span><p>12 years of service, 47 children under care.</p></div></div>
             </div>
         </section>
 
@@ -973,7 +745,7 @@
                     <div class="team-info">
                         <h4>Philes Kerubo</h4>
                         <div class="role">Co-Founder & Director</div>
-                        <p>Social worker with 15 years of experience in child welfare.</p>
+                        <p>Social worker with 15 years in child welfare.</p>
                     </div>
                 </div>
                 <div class="team-card">
@@ -983,13 +755,13 @@
                     <div class="team-info">
                         <h4>Esther Kwamboka</h4>
                         <div class="role">Co-Founder & Program Manager</div>
-                        <p>Teacher and child rights advocate, passionate about education.</p>
+                        <p>Teacher and child rights advocate.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Meet the Matrons & Leaders -->
+        <!-- Our Caring Team -->
         <section>
             <h2 class="section-title"><i class="fas fa-users"></i> Our Caring Team</h2>
             <h3 class="section-subtitle">Matrons</h3>
@@ -1001,7 +773,7 @@
                     <div class="team-info">
                         <h4>Mary Auma</h4>
                         <div class="role">Head Matron</div>
-                        <p>10 years of nursing experience, caring for children's health.</p>
+                        <p>10 years nursing experience.</p>
                     </div>
                 </div>
                 <div class="team-card">
@@ -1011,7 +783,7 @@
                     <div class="team-info">
                         <h4>Jane Wanjiku</h4>
                         <div class="role">Assistant Matron</div>
-                        <p>Specializes in child nutrition and early childhood development.</p>
+                        <p>Child nutrition specialist.</p>
                     </div>
                 </div>
             </div>
@@ -1025,7 +797,7 @@
                     <div class="team-info">
                         <h4>John Mwangi</h4>
                         <div class="role">Education Coordinator</div>
-                        <p>Ensures every child attends school and receives academic support.</p>
+                        <p>Ensures school attendance and support.</p>
                     </div>
                 </div>
                 <div class="team-card">
@@ -1035,7 +807,7 @@
                     <div class="team-info">
                         <h4>Lucy Akinyi</h4>
                         <div class="role">Counselor & Social Worker</div>
-                        <p>Provides emotional support and trauma care.</p>
+                        <p>Emotional support and trauma care.</p>
                     </div>
                 </div>
             </div>
@@ -1055,10 +827,10 @@
                     <div class="org-node small">Head Matron</div>
                 </div>
             </div>
-            <p style="text-align:center; margin-top:1rem;">Supported by a team of 15 dedicated staff and regular volunteers.</p>
+            <p style="text-align:center; margin-top:0.5rem; font-size:0.9rem;">Supported by 15 dedicated staff and volunteers.</p>
         </section>
 
-        <!-- Legal & Registration Details -->
+        <!-- Legal & Registration -->
         <section>
             <h2 class="section-title"><i class="fas fa-file-contract"></i> Legal & Registration</h2>
             <div class="legal-grid">
@@ -1070,12 +842,12 @@
                 <div class="legal-badge">
                     <i class="fas fa-hand-holding-heart"></i>
                     <h4>Non-Profit Organization</h4>
-                    <p>Registered under the NGOs Coordination Board</p>
+                    <p>NGO Coordination Board</p>
                 </div>
                 <div class="legal-badge">
                     <i class="fas fa-shield-alt"></i>
                     <h4>Child Protection Certified</h4>
-                    <p>Compliant with national standards</p>
+                    <p>National standards</p>
                 </div>
             </div>
         </section>
@@ -1084,34 +856,14 @@
         <section>
             <h2 class="section-title"><i class="fas fa-check-circle"></i> Why Choose Us</h2>
             <div class="why-grid">
-                <div class="why-card">
-                    <i class="fas fa-heart"></i>
-                    <h4>Family Environment</h4>
-                    <p>We provide a loving home, not just an institution.</p>
-                </div>
-                <div class="why-card">
-                    <i class="fas fa-graduation-cap"></i>
-                    <h4>Quality Education</h4>
-                    <p>All children attend local schools with sponsorship.</p>
-                </div>
-                <div class="why-card">
-                    <i class="fas fa-hand-holding-heart"></i>
-                    <h4>Holistic Care</h4>
-                    <p>Medical, nutritional, and emotional support.</p>
-                </div>
-                <div class="why-card">
-                    <i class="fas fa-users"></i>
-                    <h4>Community Based</h4>
-                    <p>We work with local leaders and families.</p>
-                </div>
-                <div class="why-card">
-                    <i class="fas fa-eye"></i>
-                    <h4>Transparency</h4>
-                    <p>Regular reports to donors and partners.</p>
-                </div>
+                <div class="why-card"><i class="fas fa-heart"></i><h4>Family Environment</h4><p>Loving home, not just an institution.</p></div>
+                <div class="why-card"><i class="fas fa-graduation-cap"></i><h4>Quality Education</h4><p>All children attend school with sponsorship.</p></div>
+                <div class="why-card"><i class="fas fa-hand-holding-heart"></i><h4>Holistic Care</h4><p>Medical, nutritional, emotional support.</p></div>
+                <div class="why-card"><i class="fas fa-users"></i><h4>Community Based</h4><p>Working with local leaders and families.</p></div>
+                <div class="why-card"><i class="fas fa-eye"></i><h4>Transparency</h4><p>Regular reports to donors and partners.</p></div>
             </div>
         </section>
-    </main>
+    </div>
 
     <footer>
         <div class="footer-grid">
@@ -1121,9 +873,9 @@
             </div>
             <div class="footer-col">
                 <h4>Quick links</h4>
-                <p><a href="#">About</a></p>
-                <p><a href="#">Sponsor</a></p>
-                <p><a href="#">Donate</a></p>
+                <p><a href="index.html">Home</a></p>
+                <p><a href="about.html">About</a></p>
+                <p><a href="donate.html">Donate</a></p>
             </div>
             <div class="footer-col">
                 <h4>Contact</h4>
@@ -1140,17 +892,10 @@
                 </div>
             </div>
         </div>
-        <div class="copyright" style="text-align: center; padding-top: 2rem; color: #a0b9e0; font-size: 0.9rem;">
-    <p>
-        © <span id="currentYear"></span> Happiness Children's Home. All rights reserved. 
-        Developed with ❤️ by <a href="https://www.worldwaysweb-developers.co.ke/" target="_blank" rel="noopener noreferrer" style="color: #F4C430; text-decoration: none;">Worldways Web Developers</a>.
-    </p>
-</div>
-
-<script>
-    // Update copyright year automatically
-    document.getElementById('currentYear').textContent = new Date().getFullYear();
-</script>
+        <div class="copyright">
+            © <span id="currentYear"></span> Happiness Children's Home. All rights reserved.<br>
+            Developed with ❤️ by <a href="https://www.worldwaysweb-developers.co.ke/" target="_blank" rel="noopener noreferrer" style="color: #F4C430; text-decoration: none;">Worldways Web Developers</a>.
+        </div>
     </footer>
 
     <script>
@@ -1170,6 +915,7 @@
                     hamburger.querySelector('i').classList.add('fa-bars');
                 }
             });
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
         })();
     </script>
 </body>
